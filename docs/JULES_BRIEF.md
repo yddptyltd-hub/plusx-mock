@@ -1,3 +1,8 @@
+---
+target_repo: yddptyltd-hub/plusx-mock
+target_branch: main
+---
+
 # Jules Brief: PlusX LPX Mock — Visual Build
 
 ## Context
