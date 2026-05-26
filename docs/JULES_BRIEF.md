@@ -1,6 +1,50 @@
 ---
 target_repo: yddptyltd-hub/plusx-mock
-target_branch: main
+title: PlusX LPX visual mock v1 — pool list + detail + 4 sibling tabs
+priority: high
+requested_by: yahya
+files_touched:
+  - src/app/layout.tsx
+  - src/app/page.tsx
+  - src/app/globals.css
+  - src/app/pools/[id]/page.tsx
+  - src/app/uDEX/page.tsx
+  - src/app/validatorx/page.tsx
+  - src/app/portfolio/page.tsx
+  - src/app/docs/page.tsx
+  - src/components/Header.tsx
+  - src/components/PoolTable.tsx
+  - src/components/PoolRow.tsx
+  - src/components/StatCard.tsx
+  - src/components/Sparkline.tsx
+  - src/components/CandlestickChart.tsx
+  - src/components/DonutChart.tsx
+  - src/components/ConnectWalletModal.tsx
+  - src/components/ChainSelector.tsx
+  - src/components/Tooltip.tsx
+  - src/components/Disclaimer.tsx
+  - src/components/AddLiquidityPanel.tsx
+  - src/components/CompoundHarvestSlider.tsx
+  - src/components/SearchBar.tsx
+  - src/components/FilterChips.tsx
+  - src/components/PoolPairIcons.tsx
+  - src/lib/data.ts
+  - src/lib/format.ts
+  - src/lib/mockChartData.ts
+  - src/lib/useFavorites.ts
+  - src/lib/useWallet.ts
+  - src/lib/useChain.ts
+  - tests/smoke.spec.ts
+  - playwright.config.ts
+  - package.json
+  - tailwind.config.ts
+  - tsconfig.json
+  - screenshots/jules_build_proof_dashboard.png
+  - screenshots/jules_build_proof_detail.png
+constraint: all-real-tooltips-from-data-copy-json
+contract_invariant: pixel-close-to-references-yahya-mockup-jpgs
+deployment: cloudflare-pages-plusx-mock-au-logic-com
+mandate: do-not-pause-on-routine-questions
 ---
 
 # Jules Brief: PlusX LPX Mock — Visual Build
