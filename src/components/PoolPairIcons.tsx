@@ -1,5 +1,8 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { cn } from "@/lib/utils";
+import { getTokenIcon } from "@/lib/tokenIcons";
 
 interface TokenIconProps {
   symbol: string;
@@ -7,7 +10,7 @@ interface TokenIconProps {
   className?: string;
 }
 
-const TOKEN_COLORS: Record<string, string> = {
+const FALLBACK_COLORS: Record<string, string> = {
   WPLS: "bg-gradient-to-br from-[#8B5CF6] to-[#00D4AA]",
   DAI: "bg-[#F59E0B]",
   "DAI(ETH)": "bg-[#F59E0B]",
@@ -24,23 +27,49 @@ const TOKEN_COLORS: Record<string, string> = {
 };
 
 export function TokenIcon({ symbol, size = 32, className }: TokenIconProps) {
-  const colorClass = TOKEN_COLORS[symbol] || "bg-[#64748B]";
-  
+  const iconPath = getTokenIcon(symbol);
+  const [errored, setErrored] = useState(false);
+  const showFallback = !iconPath || errored;
+
+  if (showFallback) {
+    const colorClass = FALLBACK_COLORS[symbol] || "bg-[#64748B]";
+    return (
+      <div
+        className={cn(
+          "flex items-center justify-center rounded-full text-[10px] font-bold text-white shadow-sm shrink-0",
+          colorClass,
+          className,
+        )}
+        style={{ width: size, height: size }}
+        aria-label={symbol}
+      >
+        {symbol.substring(0, 2).toUpperCase()}
+      </div>
+    );
+  }
+
   return (
-    <div
-      className={cn(
-        "flex items-center justify-center rounded-full text-[10px] font-bold text-white shadow-sm shrink-0",
-        colorClass,
-        className
-      )}
+    <img
+      src={iconPath}
+      alt={symbol}
+      width={size}
+      height={size}
+      onError={() => setErrored(true)}
+      className={cn("rounded-full shrink-0 bg-white object-cover", className)}
       style={{ width: size, height: size }}
-    >
-      {symbol.substring(0, 2).toUpperCase()}
-    </div>
+    />
   );
 }
 
-export function PoolIconPair({ fundSymbol, anchorSymbol, size = 32 }: { fundSymbol: string; anchorSymbol: string; size?: number }) {
+export function PoolIconPair({
+  fundSymbol,
+  anchorSymbol,
+  size = 32,
+}: {
+  fundSymbol: string;
+  anchorSymbol: string;
+  size?: number;
+}) {
   return (
     <div className="flex -space-x-2">
       <TokenIcon symbol={fundSymbol} size={size} className="ring-2 ring-white z-10" />

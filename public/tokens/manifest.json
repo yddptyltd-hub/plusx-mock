@@ -1,0 +1,74 @@
+{
+  "0xa1077a294dde1b09bb078844df40758a5d0f9a27": {
+    "symbol": "WPLS",
+    "name": "Wrapped Pulse",
+    "decimals": 18,
+    "iconPath": "/tokens/0xa1077a294dde1b09bb078844df40758a5d0f9a27.webp"
+  },
+  "0xefd766ccb38eaf1dfd701853bfce31359239f305": {
+    "symbol": "DAI",
+    "name": "Dai Stablecoin from Ethereum",
+    "decimals": 18,
+    "iconPath": "/tokens/0xefd766ccb38eaf1dfd701853bfce31359239f305.webp"
+  },
+  "0x7fb5120d2db148e91f572d2f69bc04fe454dbd9b": {
+    "symbol": "uPLS",
+    "name": "uPLS (www.PlusX.app)",
+    "decimals": 18,
+    "iconPath": "/tokens/0x7fb5120d2db148e91f572d2f69bc04fe454dbd9b.webp"
+  },
+  "0x95b303987a60c71504d99aa1b13b4da07b0790ab": {
+    "symbol": "PLSX",
+    "name": "PulseX",
+    "decimals": 18,
+    "iconPath": "/tokens/0x95b303987a60c71504d99aa1b13b4da07b0790ab.webp"
+  },
+  "0x2b591e99afe9f32eaa6214f7b7629768c40eeb39": {
+    "symbol": "HEX",
+    "name": "HEX",
+    "decimals": 8,
+    "iconPath": "/tokens/0x2b591e99afe9f32eaa6214f7b7629768c40eeb39.webp"
+  },
+  "0x57fde0a71132198bbec939b98976993d8d89d225": {
+    "symbol": "HEX",
+    "name": "HEX from Ethereum",
+    "decimals": 8,
+    "iconPath": "/tokens/0x57fde0a71132198bbec939b98976993d8d89d225.webp"
+  },
+  "0x2fa878ab3f87cc1c9737fc071108f904c0b0c95d": {
+    "symbol": "INC",
+    "name": "Incentive",
+    "decimals": 18,
+    "iconPath": "/tokens/0x2fa878ab3f87cc1c9737fc071108f904c0b0c95d.webp"
+  },
+  "0x664e58570e5835b99d281f12dd14d350315d7e2a": {
+    "symbol": "uPX",
+    "name": "uPX",
+    "decimals": 18,
+    "iconPath": "/tokens/0x664e58570e5835b99d281f12dd14d350315d7e2a.webp"
+  },
+  "0x131bf51e864024df1982f2cd7b1c786e1a005152": {
+    "symbol": "uP",
+    "name": "uP",
+    "decimals": 18,
+    "iconPath": "/tokens/0x131bf51e864024df1982f2cd7b1c786e1a005152.webp"
+  },
+  "0x8bdb63033b02c15f113de51ea1c3a96af9e8ecb5": {
+    "symbol": "AXIS",
+    "name": "AxisAlive",
+    "decimals": 18,
+    "iconPath": "/tokens/0x8bdb63033b02c15f113de51ea1c3a96af9e8ecb5.webp"
+  },
+  "0x8da17db850315a34532108f0f5458fc0401525f6": {
+    "symbol": "SOLIDX",
+    "name": "Solid X",
+    "decimals": 18,
+    "iconPath": "/tokens/0x8da17db850315a34532108f0f5458fc0401525f6.webp"
+  },
+  "0xf330cb1d41052dbc74d3325376cb82e99454e501": {
+    "symbol": "FIRE",
+    "name": "HEXFIREIO",
+    "decimals": 18,
+    "iconPath": "/tokens/0xf330cb1d41052dbc74d3325376cb82e99454e501.webp"
+  }
+}
