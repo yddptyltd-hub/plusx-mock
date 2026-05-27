@@ -12,7 +12,7 @@ export default function Portfolio() {
 
   if (!isConnected) {
     return (
-      <div className="max-w-7xl mx-auto px-12 py-20 text-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-20 text-center">
         <div className="max-w-md mx-auto p-10 bg-white border border-border rounded-3xl shadow-sm">
           <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
             <PoolIconPair fundSymbol="WPLS" anchorSymbol="DAI(ETH)" size={32} />
@@ -30,7 +30,7 @@ export default function Portfolio() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-12 py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-6 lg:py-10">
       <div className="flex items-center justify-between mb-10">
         <h1 className="text-2xl font-bold text-text-primary">Portfolio</h1>
         <div className="flex gap-4">

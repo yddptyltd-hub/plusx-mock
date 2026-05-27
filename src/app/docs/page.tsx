@@ -26,8 +26,8 @@ export default function Docs() {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-12 py-10 flex gap-12">
-      <aside className="w-60 shrink-0 sticky top-24 self-start">
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-6 lg:py-10 flex flex-col lg:flex-row gap-8 lg:gap-12">
+      <aside className="w-full lg:w-60 shrink-0 lg:sticky lg:top-24 lg:self-start">
         <nav className="space-y-1">
           <div className="text-[11px] font-bold text-text-tertiary uppercase tracking-widest mb-4">Documentation</div>
           <a href="/docs#overview" className="block py-2 text-sm font-medium text-text-secondary hover:text-brand-teal transition-colors">Overview</a>

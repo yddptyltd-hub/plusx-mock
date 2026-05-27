@@ -15,11 +15,11 @@ const VALIDATORS = [
 
 export default function ValidatorX() {
   return (
-    <div className="max-w-7xl mx-auto px-12 py-10">
-      <div className="grid grid-cols-12 gap-8">
-        <div className="col-span-8">
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-6 lg:py-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+        <div className="lg:col-span-8">
           <h2 className="text-xl font-bold text-text-primary mb-6">Validators</h2>
-          <div className="bg-white border border-border rounded-2xl overflow-hidden shadow-sm">
+          <div className="bg-white border border-border rounded-2xl overflow-x-auto shadow-sm">
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b border-border bg-slate-50">
@@ -62,7 +62,7 @@ export default function ValidatorX() {
           </div>
         </div>
 
-        <div className="col-span-4">
+        <div className="lg:col-span-4">
           <div className="bg-white border border-border rounded-2xl p-6 shadow-sm sticky top-24">
             <h2 className="text-lg font-bold text-text-primary mb-6">Stake PLS</h2>
             <div className="space-y-6">

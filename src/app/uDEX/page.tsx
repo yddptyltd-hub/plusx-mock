@@ -10,8 +10,8 @@ export default function UDEX() {
   const [payAmount, setPayAmount] = useState("");
 
   return (
-    <div className="max-w-7xl mx-auto px-12 py-20 flex justify-center">
-      <div className="w-full max-w-[480px] bg-white border border-border rounded-[24px] p-6 shadow-sm">
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-20 flex justify-center">
+      <div className="w-full max-w-[480px] bg-white border border-border rounded-[24px] p-4 sm:p-6 shadow-sm overflow-hidden">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-xl font-bold text-text-primary">Swap</h1>
           <Settings className="w-5 h-5 text-text-secondary cursor-pointer hover:text-brand-teal transition-colors" />
@@ -64,7 +64,7 @@ export default function UDEX() {
         <div className="mt-4 p-4 space-y-2">
           <div className="flex justify-between text-xs">
             <span className="text-text-secondary">Route</span>
-            <span className="text-text-primary font-medium">WPLS → DAI(ETH) via LPX #1</span>
+            <span className="text-text-primary font-medium truncate max-w-[200px] text-right">WPLS → DAI(ETH) via LPX #1</span>
           </div>
           <div className="flex justify-between text-xs">
             <span className="text-text-secondary">Price Impact</span>

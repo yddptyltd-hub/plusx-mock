@@ -77,7 +77,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-12 py-10">
+    <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-6 lg:py-10">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
         {stats.map((stat, i) => (
           <StatCard

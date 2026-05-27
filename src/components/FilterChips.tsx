@@ -31,14 +31,14 @@ export function FilterChips({ onSearch, onFilterChange }: FilterChipsProps) {
   };
 
   return (
-    <div className="flex items-center justify-between gap-4 mb-6">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
       <SearchBar onSearch={onSearch} />
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 overflow-x-auto flex-nowrap pb-0.5 sm:pb-0">
         <button
           onClick={() => toggleFilter("favorites")}
           className={cn(
-            "flex items-center gap-2 px-4 py-2 rounded-full border text-[13px] font-medium transition-all",
+            "flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border text-[13px] font-medium transition-all shrink-0",
             favorites
               ? "bg-brand-teal-light border-brand-teal text-brand-teal"
               : "bg-white border-border text-text-secondary hover:border-brand-teal"
@@ -50,26 +50,26 @@ export function FilterChips({ onSearch, onFilterChange }: FilterChipsProps) {
         <button
           onClick={() => toggleFilter("managed")}
           className={cn(
-            "flex items-center gap-2 px-4 py-2 rounded-full border text-[13px] font-medium transition-all",
+            "flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border text-[13px] font-medium transition-all shrink-0",
             managed
               ? "bg-brand-teal-light border-brand-teal text-brand-teal"
               : "bg-white border-border text-text-secondary hover:border-brand-teal"
           )}
         >
           <ShieldCheck className="w-3.5 h-3.5" />
-          Managed Pools
+          Managed
         </button>
         <button
           onClick={() => toggleFilter("solo")}
           className={cn(
-            "flex items-center gap-2 px-4 py-2 rounded-full border text-[13px] font-medium transition-all",
+            "flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full border text-[13px] font-medium transition-all shrink-0",
             solo
               ? "bg-brand-teal-light border-brand-teal text-brand-teal"
               : "bg-white border-border text-text-secondary hover:border-brand-teal"
           )}
         >
           <User className="w-3.5 h-3.5" />
-          Solo Pools
+          Solo
         </button>
       </div>
     </div>

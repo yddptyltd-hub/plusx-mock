@@ -22,7 +22,7 @@ export function DisclaimerBanner() {
   if (!isVisible) return null;
 
   return (
-    <div className="bg-[#FFFBEB] border-b border-amber-200 px-12 py-2 flex items-center justify-between sticky top-0 z-[60]">
+    <div className="bg-[#FFFBEB] border-b border-amber-200 px-4 sm:px-8 lg:px-12 py-2 flex items-center justify-between sticky top-0 z-[60]">
       <p className="text-[12px] text-amber-900 leading-tight pr-8">
         {copyData.disclaimer.firstVisitBanner}
       </p>

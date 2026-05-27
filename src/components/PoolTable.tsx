@@ -16,7 +16,7 @@ export function PoolTable({ pools, favorites, onFavoriteToggle, sortConfig, onSo
   return (
     <div className="bg-white border border-border rounded-2xl overflow-hidden shadow-sm">
       <table className="w-full text-left" id="pool-table">
-        <thead>
+        <thead className="hidden md:table-header-group">
           <tr className="border-b border-border bg-slate-50">
             <th className="px-6 py-4 text-[13px] font-semibold text-text-secondary">Pool</th>
             <th 
