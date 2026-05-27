@@ -58,3 +58,48 @@ Returns swap history for a pool.
 2. Add a SWR/React Query layer with 60s stale-time, 5min cache-time.
 3. Replace `data.poolsData` usage in pages with the SWR hook. Keep static JSON as fallback for SSR / first paint.
 4. Surface a small "Last updated: HH:MM" badge near the table header so it's clear the data is live.
+
+## v1.2 — Historical snapshots via CF Worker + KV
+
+Goal: after 7+ days of running, the mock can show REAL "vs last 7 days" deltas + sparklines.
+
+### Architecture
+
+```
+[CF Cron, every 30 min] → [Worker /scheduled] → fetch SearchLPXs → KV.put(snap:<ts>)
+                                                                  → KV.put(latest)
+
+[Mock site / page load] → [Worker /api/latest]   → KV.get(latest)
+                       → [Worker /api/history?days=7] → KV.list(prefix=snap:) → filter recent → return array
+```
+
+### File layout
+
+- `worker/index.ts` — Worker entrypoint (scheduled + fetch handlers)
+- `wrangler.toml` — config: cron trigger, KV bindings (SNAPSHOTS, LATEST)
+- `src/lib/history.ts` — client-side wrapper around /api/history endpoint
+- `src/components/Sparkline.tsx` — accepts the historical data shape and renders the real sparkline
+
+### KV retention
+
+- `snap:<unix_ms>` keys: 60-day TTL (covers 30d sparkline + headroom)
+- `latest` key: no TTL, overwritten each cron
+
+### Worker triggers
+
+```toml
+[triggers]
+crons = ["*/30 * * * *"]   # every 30 minutes
+```
+
+### Cost model
+
+- Cron triggers: free tier 100k/day, we use 48/day
+- KV reads: free tier 100k/day, we use ~5-10k/day
+- KV writes: free tier 1k/day, we use 48/day
+- Worker requests: free tier 100k/day, we use likely <5k/day
+- **Total: $0/month**
+
+### Approved by Yahya 2026-05-27
+
+After v1.1 client-side live API integration lands.
