@@ -6,7 +6,7 @@
  * never raw token counts mislabeled as dollars.
  */
 
-import { findPairForLPX } from "./dexscreener";
+import { findPairForLPX, getTokenPriceUsd } from "./dexscreener";
 
 const BASE = "https://lpx.plusx.app/watcher";
 
@@ -231,26 +231,54 @@ export async function fetchLivePools(): Promise<LivePool[]> {
 }
 
 /**
- * Enrich pools with USD values from DexScreener (parallel fetch per pool).
- * Pools with no DexScreener match keep tvl/volume as "—".
+ * Enrich pools with USD values computed from raw on-chain reserves × token prices.
+ *
+ * Formula (verified against live mirror.lpx.plusx.app):
+ *   tvlUsd = (fundRaw / 10^fundDecimals) * fundPriceUsd
+ *           + (anchorRaw / 10^anchorDecimals) * anchorPriceUsd
+ *
+ * IMPORTANT: fundImgRaw / anchorImgRaw are virtual/imaginary reserves used
+ * internally by the LPX constant-product math — they are NOT real tokens held.
+ * They must NEVER be included in TVL computation.
+ *
+ * DAI(ETH) at 0xefd766ccb38eaf1dfd701853bfce31359239f305 is treated as exactly
+ * $1.00 (ecosystem oracle peg) — DexScreener market price is irrelevant.
+ *
+ * Pools with no DexScreener price data keep tvl/volume as "—".
  */
 export async function enrichWithDexScreener(pools: LivePool[]): Promise<LivePool[]> {
   return Promise.all(
     pools.map(async (pool) => {
-      const pair = await findPairForLPX(pool.fundTokenAddress, pool.anchorTokenAddress);
-      if (!pair) return pool;
-      const tvlUsd = pair.liquidity?.usd ?? null;
-      const volume24hUsd = pair.volume?.h24 ?? null;
+      // Fetch token prices and DexScreener pair concurrently
+      const [fundPriceUsd, anchorPriceUsd, pair] = await Promise.all([
+        getTokenPriceUsd(pool.fundTokenAddress),
+        getTokenPriceUsd(pool.anchorTokenAddress),
+        findPairForLPX(pool.fundTokenAddress, pool.anchorTokenAddress),
+      ]);
+
+      // TVL = raw reserves × token prices (never img/virtual reserves)
+      const tvlUsd =
+        fundPriceUsd !== null && anchorPriceUsd !== null
+          ? pool.fundReserveAmount * fundPriceUsd +
+            pool.anchorReserveAmount * anchorPriceUsd
+          : null;
+
+      // Volume and fees come from DexScreener pair (if found)
+      const volume24hUsd = pair?.volume?.h24 ?? null;
       const fees24hUsd =
         volume24hUsd !== null && pool.feeIndex > 0
           ? volume24hUsd * pool.feeIndex
           : null;
-      const priceUsd = pair.priceUsd ? parseFloat(pair.priceUsd) : null;
-      const pairCreatedAt = pair.pairCreatedAt ?? null;
+
+      // Price of the fund token (base token from DexScreener perspective)
+      const priceUsd = fundPriceUsd;
+
+      const pairCreatedAt = pair?.pairCreatedAt ?? null;
       const ageDays =
         pairCreatedAt !== null
           ? Math.floor((Date.now() - pairCreatedAt) / (1000 * 60 * 60 * 24))
           : 0;
+
       return {
         ...pool,
         tvl: tvlUsd !== null ? formatUsd(tvlUsd) : "—",

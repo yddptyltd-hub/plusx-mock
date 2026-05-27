@@ -10,6 +10,13 @@
 
 const DEXSCREENER_BASE = "https://api.dexscreener.com/latest/dex";
 
+/**
+ * DAI bridged from Ethereum — ecosystem oracle pegs this to exactly $1.00.
+ * PulseChain DEXes use it as the USD reference. DexScreener may report ~$0.74
+ * (illiquid USDC pair) which is irrelevant — the oracle peg is canonical.
+ */
+export const DAI_ETH_ADDRESS = "0xefd766ccb38eaf1dfd701853bfce31359239f305";
+
 // ─── API response types ───────────────────────────────────────────────────────
 
 export interface DexScreenerPair {
@@ -74,4 +81,34 @@ export async function findPairForLPX(
   );
 
   return match ?? null;
+}
+
+/**
+ * Return the USD price for a token on PulseChain.
+ *
+ * Special case: DAI bridged from Ethereum (0xefd766ccb38eaf1dfd701853bfce31359239f305)
+ * is the ecosystem oracle reference — always returns exactly 1.0 regardless of
+ * DexScreener's reported price (which can be ~$0.74 due to illiquid USDC pairs).
+ *
+ * For all other tokens: fetch DexScreener pairs for the token, filter to
+ * PulseChain, pick the pair with the highest liquidity.usd, and return its
+ * priceUsd. Returns null if no pair is found or on any error.
+ */
+export async function getTokenPriceUsd(tokenAddress: string): Promise<number | null> {
+  if (tokenAddress.toLowerCase() === DAI_ETH_ADDRESS.toLowerCase()) {
+    return 1.0;
+  }
+  try {
+    const pairs = await fetchDexScreenerPairsForToken(tokenAddress);
+    const pulsePairs = pairs.filter((p) => p.chainId === "pulsechain");
+    if (pulsePairs.length === 0) return null;
+    // Pick highest-liquidity pair as the most reliable price source
+    const best = pulsePairs.reduce((a, b) =>
+      (a.liquidity?.usd ?? 0) >= (b.liquidity?.usd ?? 0) ? a : b
+    );
+    const price = parseFloat(best.priceUsd);
+    return isNaN(price) ? null : price;
+  } catch {
+    return null;
+  }
 }

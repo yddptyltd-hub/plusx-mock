@@ -7,7 +7,7 @@ import { PoolTable } from "@/components/PoolTable";
 import { copyData } from "@/lib/data";
 import { getFavorites } from "@/lib/useFavorites";
 import { useLivePools } from "@/lib/useLivePools";
-import { LivePool } from "@/lib/livePools";
+import { LivePool, formatUsd } from "@/lib/livePools";
 
 type SortConfig = {
   key: "tvlRaw" | "volume24hRaw" | "ageDays" | "apr30dRaw" | null;
@@ -57,16 +57,25 @@ export default function Dashboard() {
     const maxPool = active.find((p) => (p as any).apr30dRaw === maxApr);
     const maxLabel = maxPool ? `${maxPool.pair[0]}/${maxPool.pair[1]}` : "";
     const fundSymbols = new Set(active.map((p) => p.pair[0]));
-    return { count, lpCount, lpAllTime, avgApr30d, maxApr, maxLabel, fundTokenCount: fundSymbols.size };
+    // Total TVL: sum of per-pool tvlUsd (raw-reserves × token-price formula)
+    const tvlUsdValues = active
+      .map((p) => (p as LivePool).tvlUsd)
+      .filter((v): v is number => v !== null && v > 0);
+    const totalTvlUsd = tvlUsdValues.length ? tvlUsdValues.reduce((a, b) => a + b, 0) : null;
+    return { count, lpCount, lpAllTime, avgApr30d, maxApr, maxLabel, fundTokenCount: fundSymbols.size, totalTvlUsd, poolCount: count };
   }, [livePools]);
 
   const stats = useMemo(() => {
     const s = copyData.headerStats;
-    if (!livePcts || !isLive) return [s.activePools, s.liquidityProviders, s.avgApr30d];
+    const tvlTooltip = "Sum of TVL across all active LPX pools, computed from on-chain reserves × DexScreener token prices. DAI treated as $1.00 per ecosystem oracle.";
+    if (!livePcts || !isLive) return [s.activePools, s.liquidityProviders, s.avgApr30d, { label: "Total TVL", value: "—", subtitle: "loading…", tooltip: tvlTooltip }];
+    const tvlValue = livePcts.totalTvlUsd !== null ? formatUsd(livePcts.totalTvlUsd) : "—";
+    const tvlSubtitle = `across ${livePcts.poolCount} pools`;
     return [
       { label: s.activePools.label, value: String(livePcts.count), subtitle: `across ${livePcts.fundTokenCount} fund tokens`, tooltip: s.activePools.tooltip },
       { label: s.liquidityProviders.label, value: livePcts.lpCount.toLocaleString(), subtitle: `${livePcts.lpAllTime.toLocaleString()} all-time`, tooltip: s.liquidityProviders.tooltip },
       { label: s.avgApr30d.label, value: `${livePcts.avgApr30d.toFixed(2)}%`, subtitle: livePcts.maxLabel ? `Max ${livePcts.maxApr.toFixed(2)}% on ${livePcts.maxLabel}` : s.avgApr30d.subtitle, tooltip: s.avgApr30d.tooltip },
+      { label: "Total TVL", value: tvlValue, subtitle: tvlSubtitle, tooltip: tvlTooltip },
     ];
   }, [livePcts, isLive]);
 
@@ -89,7 +98,7 @@ export default function Dashboard() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-12 py-6 lg:py-10">
       <div className="relative mb-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
             <StatCard key={i} label={stat.label} value={stat.value} subtitle={stat.subtitle} tooltipText={stat.tooltip} />
           ))}

@@ -7,6 +7,8 @@ import { describe, it, expect } from "vitest";
 import {
   fetchDexScreenerPairsForToken,
   findPairForLPX,
+  getTokenPriceUsd,
+  DAI_ETH_ADDRESS,
   type DexScreenerPair,
 } from "../src/lib/dexscreener";
 
@@ -61,5 +63,20 @@ describe("DexScreener live contract", () => {
     console.log(`[LIVE] pairAddress  = ${found.pairAddress}`);
     console.log(`[LIVE] liquidity.usd = $${found.liquidity.usd.toLocaleString()}`);
     console.log(`[LIVE] volume.h24    = $${found.volume.h24.toLocaleString()}`);
+  });
+
+  it("getTokenPriceUsd: DAI(ETH) returns exactly 1.0 (oracle peg, no network call needed)", async () => {
+    const price = await getTokenPriceUsd(DAI_ETH_ADDRESS);
+    expect(price).toBe(1.0);
+    console.log(`[LIVE] DAI(ETH) oracle price = ${price}`);
+  });
+
+  it("getTokenPriceUsd: WPLS returns a live positive price from highest-liquidity PulseChain pair", async () => {
+    const price = await getTokenPriceUsd(WPLS_ADDRESS);
+    expect(price).not.toBeNull();
+    expect(price).toBeGreaterThan(0);
+    // WPLS is a fractional-cent token — must never return a dollar-range value (would indicate token-count leak)
+    expect(price).toBeLessThan(1.0);
+    console.log(`[LIVE] WPLS price from getTokenPriceUsd = $${price}`);
   });
 });
