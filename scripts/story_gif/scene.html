@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+
+  body {
+    margin: 0;
+    padding: 0;
+    width: 1080px;
+    height: 1920px;
+    background: radial-gradient(circle at 50% 10%, #1a2254 0%, #0a0e2e 50%, #1a1844 100%);
+    font-family: 'Inter', sans-serif;
+    color: white;
+    overflow: hidden;
+  }
+
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 120px 60px;
+    box-sizing: border-box;
+  }
+
+  .title-group {
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 60px;
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  .title {
+    font-size: 110px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0;
+  }
+
+  .title-highlight {
+    background: linear-gradient(90deg, #10D9C4, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .subtitle {
+    font-size: 38px;
+    font-weight: 400;
+    color: #a0a8cc;
+    margin-top: 40px;
+    max-width: 900px;
+    line-height: 1.4;
+    opacity: 0;
+  }
+
+  .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .row-1 {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .row-2 {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 30px;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    transform: scale(0.7);
+    opacity: 0;
+  }
+
+  .row-1 .card {
+    flex: 1;
+  }
+
+  .row-2 .card {
+    flex: 1;
+    padding: 40px 20px;
+  }
+
+  .card-label {
+    font-size: 28px;
+    font-weight: 600;
+    color: #a0a8cc;
+    margin-bottom: 20px;
+  }
+
+  .card-value {
+    font-size: 72px;
+    font-weight: 800;
+  }
+
+  .row-2 .card-label {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .row-2 .card-value {
+    font-size: 54px;
+  }
+
+  /* Accents */
+  .c-teal .card-value { color: #10D9C4; }
+  .c-violet .card-value { color: #a78bfa; }
+  .c-orange .card-value { color: #fb923c; }
+  .c-green .card-value { color: #4ade80; }
+  .c-emerald .card-value { color: #10b981; }
+
+  .callout {
+    margin-top: 80px;
+    background: rgba(16, 217, 196, 0.05);
+    border: 2px solid rgba(16, 217, 196, 0.3);
+    border-radius: 40px;
+    padding: 50px 60px;
+    text-align: center;
+    font-size: 34px;
+    line-height: 1.5;
+    color: #e2e8f0;
+    opacity: 0;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 50px;
+    font-size: 24px;
+    color: #475569;
+    font-weight: 600;
+  }
+
+  /* Span colors for callout */
+  .t-teal { color: #10D9C4; font-weight: 800; }
+  .t-violet { color: #a78bfa; font-weight: 800; }
+  .t-emerald { color: #10b981; font-weight: 800; }
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="title-group" id="titleGroup">
+      <h1 class="title">PlusX Drives<br><span class="title-highlight">Real Chain Activity</span></h1>
+      <div class="subtitle" id="subtitle">Every LPX trade is a PulseChain transaction. Every staked validator secures a block. The activity is real &mdash; and it compounds.</div>
+    </div>
+
+    <div class="grid">
+      <div class="row-1">
+        <div class="card c-teal" id="card0">
+          <div class="card-label">LPX On-Chain Trades</div>
+          <div class="card-value" id="val0">0</div>
+        </div>
+        <div class="card c-violet" id="card1">
+          <div class="card-label">PulseChain Total Txns</div>
+          <div class="card-value" id="val1">0</div>
+        </div>
+      </div>
+      <div class="row-2">
+        <div class="card c-orange" id="card2">
+          <div class="card-label">PulseX All-Time Volume</div>
+          <div class="card-value" id="val2">0</div>
+        </div>
+        <div class="card c-green" id="card3">
+          <div class="card-label">LPX Wallet Holders</div>
+          <div class="card-value" id="val3">0</div>
+        </div>
+        <div class="card c-emerald" id="card4">
+          <div class="card-label">PLSX Burn Contribution</div>
+          <div class="card-value" id="val4">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" id="callout">
+      PlusX protocols generated <span class="t-teal" id="cw0" style="opacity: 0">100,000+ on-chain transactions</span>, staked <span class="t-violet" id="cw1" style="opacity: 0">91.5B PLS</span>, and contributed to <span class="t-emerald" id="cw2" style="opacity: 0">PLSX deflation</span> &mdash; all while paying users, not extractors.
+    </div>
+
+    <div class="footer">plusx-mock.pages.dev</div>
+  </div>
+
+  <script>
+    // Data values (target)
+    // 0: LPX On-Chain Trades: 103,526
+    // 1: PulseChain Total Txns: 2.41B
+    // 2: PulseX All-Time Volume: $19.5B
+    // 3: LPX Wallet Holders: 1,062
+    // 4: PLSX Burn Contribution: $19K+
+    const targets = [103526, 2.41, 19.5, 1062, 19];
+    const prefixes = ["", "", "$", "", "$"];
+    const suffixes = ["", "B", "B", "", "K+"];
+    const decimals = [0, 2, 1, 0, 0];
+
+    // Formatting function
+    function formatValue(val, idx) {
+      let numStr;
+      if (decimals[idx] === 0) {
+        numStr = Math.floor(val).toLocaleString('en-US');
+      } else {
+        numStr = val.toFixed(decimals[idx]);
+      }
+      return prefixes[idx] + numStr + suffixes[idx];
+    }
+
+    // Animation timing
+    // 0.0-0.5s: title slides in from above + sub-headline fades in
+    // 0.5-2.5s: 5 KPI cards pop in (0.4s apart -> 0.5, 0.9, 1.3, 1.7, 2.1)
+    // For each card: number counts up over 0.6s after pop-in
+    // 2.5-3.0s: bottom callout fades in
+
+    const cardPopTimes = [500, 900, 1300, 1700, 2100];
+
+    // Easing functions
+    function easeOutCubic(x) {
+      return 1 - Math.pow(1 - x, 3);
+    }
+
+    function easeOutQuart(x) {
+      return 1 - Math.pow(1 - x, 4);
+    }
+
+    function easeOutBack(x) {
+      const c1 = 1.70158;
+      const c3 = c1 + 1;
+      return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+    }
+
+    let startTime = null;
+
+    function render(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const t = timestamp - startTime;
+
+      // Title & subtitle: 0-500ms
+      if (t > 0) {
+        let pTitle = Math.min(1, t / 500);
+        let eTitle = easeOutCubic(pTitle);
+        document.getElementById('titleGroup').style.opacity = eTitle;
+        document.getElementById('titleGroup').style.transform = `translateY(${-50 * (1 - eTitle)}px)`;
+        document.getElementById('subtitle').style.opacity = eTitle;
+      }
+
+      // Cards
+      for (let i = 0; i < 5; i++) {
+        let pStart = cardPopTimes[i];
+        if (t > pStart) {
+          // Pop animation (400ms duration for the pop itself feels good, maybe less)
+          let pPop = Math.min(1, (t - pStart) / 400);
+          let ePop = easeOutBack(pPop);
+          // Don't let scale go below 0.7 or above 1.0 (with bounce it goes a bit over)
+          document.getElementById('card' + i).style.opacity = Math.min(1, pPop * 2);
+          document.getElementById('card' + i).style.transform = `scale(${0.7 + 0.3 * ePop})`;
+
+          // Count up animation (600ms duration)
+          let pCount = Math.min(1, (t - pStart) / 600);
+          let eCount = easeOutQuart(pCount);
+          let val = targets[i] * eCount;
+          document.getElementById('val' + i).innerText = formatValue(val, i);
+        }
+      }
+
+      // Callout: 2500-3000ms
+      if (t > 2500) {
+        let pCallout = Math.min(1, (t - 2500) / 300); // Base fades in faster
+        document.getElementById('callout').style.opacity = easeOutCubic(pCallout);
+        document.getElementById('callout').style.transform = `translateY(${20 * (1 - easeOutCubic(pCallout))}px)`;
+
+        // Sequentially fade in colored words
+        document.getElementById('cw0').style.opacity = Math.min(1, Math.max(0, (t - 2600) / 200));
+        document.getElementById('cw1').style.opacity = Math.min(1, Math.max(0, (t - 2750) / 200));
+        document.getElementById('cw2').style.opacity = Math.min(1, Math.max(0, (t - 2900) / 200));
+      }
+
+      if (t < 5500) { // Keep rendering a bit past 4s just in case
+        requestAnimationFrame(render);
+      }
+    }
+
+    // Export hook for playwright
+    window.startAnimation = () => {
+      startTime = null;
+      requestAnimationFrame(render);
+    }
+
+    // If running in browser normally
+    setTimeout(() => {
+      if (!window.playwright) window.startAnimation();
+    }, 100);
+
+  </script>
+</body>
+</html>
