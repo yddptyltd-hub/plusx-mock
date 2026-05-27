@@ -10,21 +10,35 @@ import {
 } from "recharts";
 import { generateCandlestickData } from "@/lib/mockChartData";
 import { cn } from "@/lib/utils";
+import type { Candle } from "@/lib/livePools";
 
 interface CandlestickChartProps {
   id: string;
   pair: string[];
+  liveCandles?: Candle[];
+  onIntervalChange?: (interval: string) => void;
 }
 
 const INTERVALS = ["5m", "15m", "1h", "4h", "1d"];
 
-export function CandlestickChart({ id, pair }: CandlestickChartProps) {
-  const [interval, setInterval] = useState("1h");
-  const [data, setData] = useState<any[]>([]);
+export function CandlestickChart({ id, pair, liveCandles, onIntervalChange }: CandlestickChartProps) {
+  const [interval, setInterval] = useState("15m");
+  const [mockData, setMockData] = useState<any[]>([]);
 
   useEffect(() => {
-    setData(generateCandlestickData(id, interval, 40));
-  }, [id, interval]);
+    if (!liveCandles || liveCandles.length === 0) {
+      setMockData(generateCandlestickData(id, interval, 40));
+    }
+  }, [id, interval, liveCandles]);
+
+  const handleIntervalChange = (int: string) => {
+    setInterval(int);
+    onIntervalChange?.(int);
+  };
+
+  const data: any[] = liveCandles && liveCandles.length > 0
+    ? liveCandles.map((c) => ({ time: c.openTS, open: c.open, high: c.high, low: c.low, close: c.close }))
+    : mockData;
 
   return (
     <div className="bg-white border border-border rounded-2xl p-6 shadow-sm flex flex-col h-[320px]">
@@ -59,7 +73,7 @@ export function CandlestickChart({ id, pair }: CandlestickChartProps) {
           {INTERVALS.map((int) => (
             <button
               key={int}
-              onClick={() => setInterval(int)}
+              onClick={() => handleIntervalChange(int)}
               className={cn(
                 "px-3 py-1 text-xs font-medium rounded-md transition-all",
                 interval === int
