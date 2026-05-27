@@ -71,24 +71,9 @@ export default function Dashboard() {
   }, [searchQuery, activeFilters, favorites, sortConfig]);
 
   const stats = [
-    {
-      ...copyData.headerStats.totalTvl,
-      tooltipKey: "totalTvl",
-      sparklineColor: "#00D4AA",
-      sparklineData: generateSparklineData("tvl", 30, "up"),
-    },
-    {
-      ...copyData.headerStats.totalPoolVolume,
-      tooltipKey: "totalPoolVolume",
-      sparklineColor: "#EC4899",
-      sparklineData: generateSparklineData("volume", 30, "down"),
-    },
-    {
-      ...copyData.headerStats.totalThroughput,
-      tooltipKey: "totalThroughput",
-      sparklineColor: "#60A5FA",
-      sparklineData: generateSparklineData("throughput", 30, "up"),
-    },
+    copyData.headerStats.activePools,
+    copyData.headerStats.liquidityProviders,
+    copyData.headerStats.avgApr30d,
   ];
 
   return (
@@ -99,12 +84,8 @@ export default function Dashboard() {
             key={i}
             label={stat.label}
             value={stat.value}
-            changePercent={stat.changePercent}
-            changeDirection={stat.changeDirection as "up" | "down"}
-            changeLabel={stat.changeLabel}
-            sparklineData={stat.sparklineData}
-            sparklineColor={stat.sparklineColor}
-            tooltipKey={stat.tooltipKey}
+            subtitle={stat.subtitle}
+            tooltipText={stat.tooltip}
           />
         ))}
       </div>

@@ -10,10 +10,11 @@ import { copyData } from "@/lib/data";
 
 interface TooltipProps {
   contentKey: string;
+  text?: string;
 }
 
-export function InfoTooltip({ contentKey }: TooltipProps) {
-  const text = (copyData.tooltips as Record<string, string>)[contentKey];
+export function InfoTooltip({ contentKey, text: directText }: TooltipProps) {
+  const text = directText ?? (copyData.tooltips as Record<string, string>)[contentKey];
 
   if (!text) return null;
 

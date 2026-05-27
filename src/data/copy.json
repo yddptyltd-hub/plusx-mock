@@ -26,28 +26,26 @@
     "arbitrageYield7d": "Yield captured from price arbitrage opportunities over the last 7 days, expressed in anchor tokens."
   },
   "headerStats": {
-    "totalTvl": {
-      "label": "Total TVL",
-      "value": "$130,369,555.55",
-      "changePercent": 12.73,
-      "changeDirection": "up",
-      "changeLabel": "vs last 7 days"
+    "activePools": {
+      "label": "Active Pools",
+      "value": "15",
+      "subtitle": "across 10 fund tokens",
+      "tooltip": "Count of LPX positions currently open and accepting deposits."
     },
-    "totalPoolVolume": {
-      "label": "Total Pool Volume",
-      "value": "$18.8M",
-      "changePercent": 6.28,
-      "changeDirection": "down",
-      "changeLabel": "vs last 7 days"
+    "liquidityProviders": {
+      "label": "Liquidity Providers",
+      "value": "673",
+      "subtitle": "1,274 all-time",
+      "tooltip": "Unique addresses currently providing liquidity across all active LPX pools. All-time figure includes addresses that have since exited."
     },
-    "totalThroughput": {
-      "label": "Total Throughput",
-      "value": "$46.2M",
-      "changePercent": 9.41,
-      "changeDirection": "up",
-      "changeLabel": "vs last 7 days"
+    "avgApr30d": {
+      "label": "Avg 30D APR",
+      "value": "6.55%",
+      "subtitle": "Max 17.75% on HEX/HEX",
+      "tooltip": "Mean of the 30-day annualized percentage rate across all active LPX pools. Past performance does not guarantee future yield."
     }
   },
+  "headerStatsNote": "Three sparkline-and-delta cards from the mockup are replaced by computed aggregates from the live LPX API (SearchLPXs). The mockup's Total TVL / Total Pool Volume / Total Throughput do not appear on the real lpx.plusx.app interface and would have required price oracle integration to compute honestly. These three card metrics auto-refresh in v1.1 when the client switches to live API fetching.",
   "disclaimer": {
     "firstVisitBanner": "PlusX.app is a PulseChain community-driven interface to run code. Any information on this site is for educational and entertainment purposes only. Always consult a qualified financial professional and use test wallets before making transactions. PlusX.app does not provide financial, investment, or trading advice.",
     "riskTopBar": "Use of LPX involves substantial risk including smart-contract bugs, market volatility, wallet compromise, and configuration errors. Always test with a separate wallet first.",
