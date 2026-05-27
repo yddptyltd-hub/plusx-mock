@@ -419,3 +419,22 @@ Before opening the PR, confirm each of these:
 - Smoke test screenshot `screenshots/jules_build_proof_dashboard.png` exists and shows the pool table with visible rows
 - Smoke test screenshot `screenshots/jules_build_proof_detail.png` exists and shows the WPLS/DAI(ETH) detail page with "11.84%" visible
 
+
+
+## Prior Attempts (auto-injected)
+
+## Prior Attempts (10 matches)
+
+- [/Users/dynamic/Documents/APEX-Vault/600-AI-Inbox/2026-05-26T2140Z-swarm-finding-2ff062ce67e1182b.md] --- source: swarm timestamp: 2026-05-26T21-40-12Z topic: finding-2ff062ce67e1182b status: finding related: [] referenced_files:   - /private/tmp/swarm_findings_v3/ingest_test_e107af6c30_finding.json -
+- [/Users/dynamic/Documents/APEX-Vault/600-AI-Inbox/pixel_animation_tools_2026-05-25.md] ── orchestra ──  0 0 todos Ripgrep is not available. Falling back to GrepTool. Prompt with name "scan_deps" is already registered. Renaming to "osvScanner_scan_deps". Tool with name "mcp_osvScanner_ge
+- [/Users/dynamic/Documents/APEX-Vault/600-AI-Inbox/doctrine_audit_2026-05-25.md] ```json [   {     "layer": "doctrine",     "severity": "CRITICAL",     "file": "~/.claude/rules/prompt-cache.md",     "lines": "49",     "body": "Tier-0 freeze list declares `five-pillar-adversarial-r
+- [/Users/dynamic/Documents/APEX-Vault/600-AI-Inbox/agy_jules_first_architecture_2026-05-25.md] I will now run a command to list the rest of the required files to verify their existence and check their paths. I will pause to wait for the background tasks to complete and return their outputs. I w
+- [/Users/dynamic/Documents/APEX-Vault/600-AI-Inbox/agy_guards_gap_audit_2026-05-25.md] # AGY Guards Gap Audit — 2026-05-25  > **NOTE FOR ORCHESTRATOR:** Target path `/Users/dynamic/Documents/APEX-Vault/600-AI-Inbox/` returned "Interrupted system call" (iCloud/network volume issue at tim
+- [/Users/dynamic/Documents/APEX-Vault/600-AI-Inbox/20260525T145610Z-jules-watchdog-alert.md] --- status: watchdog-alert time: 2026-05-25T14:56:10.969372+00:00 ---  Jules session 16652258701485248399 (v6-audit-fixes-20260525) is awaiting feedback since 2026-05-25T12:33:19.763944Z.  Question: I
+- [/Users/dynamic/Documents/APEX-Vault/600-AI-Inbox/20260525T135032Z-jules-watchdog-alert.md] --- status: watchdog-alert time: 2026-05-25T13:50:32.175529+00:00 ---  Jules session 16652258701485248399 (v6-audit-fixes-20260525) is awaiting feedback since 2026-05-25T12:33:19.763944Z.  Question: I
+- [/Users/dynamic/Documents/APEX-Vault/600-AI-Inbox/20260525T105349Z-jules-watchdog-alert.md] --- status: watchdog-alert time: 2026-05-25T10:53:49.876750+00:00 ---  Jules session 9232019887027314986 (yt-chat-bubbles) is awaiting feedback since 2026-05-25T10:18:22.733638Z.  Question: I have imp
+- [/Users/dynamic/Documents/APEX-Vault/600-AI-Inbox/2026-05-25T11-15Z-orchestrator-jules-spawns-jules-execution-failure.md] --- ts: 2026-05-25T11:15:00Z source: orchestrator (Claude Opus 4.7) topic: jules-spawns-jules execution failure mode related: jules-spawns-jules-recipe.md, jules-research-companion-brief.md severity: 
+- [/Users/dynamic/Documents/APEX-Vault/600-AI-Inbox/2026-05-25T-orchestrator-yahya-triage-live-walk.md] --- title: "Live 50×50 walk of yahya-triage.pages.dev — orchestrator-direct (agy fabricated)" date: 2026-05-25 source: orchestrator-playwright-fallback related: research/yt-page-audit-20260525-2127/RE
+
+## Verdict
+Review prior attempts above before proceeding.
