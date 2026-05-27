@@ -1,15 +1,21 @@
 {
-  "0xa1077a294dde1b09bb078844df40758a5d0f9a27": {
-    "symbol": "WPLS",
-    "name": "Wrapped Pulse",
+  "0x02dcdd04e3f455d838cd1249292c58f3b79e3c3c": {
+    "symbol": "WETH",
+    "name": "Wrapped Ether from Ethereum",
     "decimals": 18,
-    "iconPath": "/tokens/0xa1077a294dde1b09bb078844df40758a5d0f9a27.webp"
+    "iconPath": "/tokens/0x02dcdd04e3f455d838cd1249292c58f3b79e3c3c.webp"
   },
-  "0xefd766ccb38eaf1dfd701853bfce31359239f305": {
-    "symbol": "DAI",
-    "name": "Dai Stablecoin from Ethereum",
+  "0xfc4913214444af5c715cc9f7b52655e788a569ed": {
+    "symbol": "ICSA",
+    "name": "Icosa",
+    "decimals": 9,
+    "iconPath": "/tokens/0xfc4913214444af5c715cc9f7b52655e788a569ed.webp"
+  },
+  "0xf6f8db0aba00007681f8faf16a0fda1c9b030b11": {
+    "symbol": "PRVX",
+    "name": "ProveX",
     "decimals": 18,
-    "iconPath": "/tokens/0xefd766ccb38eaf1dfd701853bfce31359239f305.webp"
+    "iconPath": "/tokens/0xf6f8db0aba00007681f8faf16a0fda1c9b030b11.webp"
   },
   "0x7fb5120d2db148e91f572d2f69bc04fe454dbd9b": {
     "symbol": "uPLS",
@@ -17,11 +23,11 @@
     "decimals": 18,
     "iconPath": "/tokens/0x7fb5120d2db148e91f572d2f69bc04fe454dbd9b.webp"
   },
-  "0x95b303987a60c71504d99aa1b13b4da07b0790ab": {
-    "symbol": "PLSX",
-    "name": "PulseX",
+  "0x0567ca0de35606e9c260cc2358404b11de21db44": {
+    "symbol": "HELGO",
+    "name": "HELGO",
     "decimals": 18,
-    "iconPath": "/tokens/0x95b303987a60c71504d99aa1b13b4da07b0790ab.webp"
+    "iconPath": "/tokens/0x0567ca0de35606e9c260cc2358404b11de21db44.webp"
   },
   "0x2b591e99afe9f32eaa6214f7b7629768c40eeb39": {
     "symbol": "HEX",
@@ -29,11 +35,35 @@
     "decimals": 8,
     "iconPath": "/tokens/0x2b591e99afe9f32eaa6214f7b7629768c40eeb39.webp"
   },
-  "0x57fde0a71132198bbec939b98976993d8d89d225": {
-    "symbol": "HEX",
-    "name": "HEX from Ethereum",
+  "0xbb101431d43b0e1fc31f000bf96826794806e0b4": {
+    "symbol": "APC",
+    "name": "Apin Pulse",
+    "decimals": 18,
+    "iconPath": "/tokens/0xbb101431d43b0e1fc31f000bf96826794806e0b4.webp"
+  },
+  "0xeb52ac4d25067185f75bab4bcbfbafa28c876a22": {
+    "symbol": "VAULT",
+    "name": "VAULT 369",
+    "decimals": 18,
+    "iconPath": "/tokens/0xeb52ac4d25067185f75bab4bcbfbafa28c876a22.webp"
+  },
+  "0x95b303987a60c71504d99aa1b13b4da07b0790ab": {
+    "symbol": "PLSX",
+    "name": "PulseX",
+    "decimals": 18,
+    "iconPath": "/tokens/0x95b303987a60c71504d99aa1b13b4da07b0790ab.webp"
+  },
+  "0xb17d901469b9208b17d916112988a3fed19b5ca1": {
+    "symbol": "WBTC",
+    "name": "Wrapped BTC from Ethereum",
     "decimals": 8,
-    "iconPath": "/tokens/0x57fde0a71132198bbec939b98976993d8d89d225.webp"
+    "iconPath": "/tokens/0xb17d901469b9208b17d916112988a3fed19b5ca1.webp"
+  },
+  "0xf330cb1d41052dbc74d3325376cb82e99454e501": {
+    "symbol": "FIRE",
+    "name": "HEXFIREIO",
+    "decimals": 18,
+    "iconPath": "/tokens/0xf330cb1d41052dbc74d3325376cb82e99454e501.webp"
   },
   "0x2fa878ab3f87cc1c9737fc071108f904c0b0c95d": {
     "symbol": "INC",
@@ -41,11 +71,83 @@
     "decimals": 18,
     "iconPath": "/tokens/0x2fa878ab3f87cc1c9737fc071108f904c0b0c95d.webp"
   },
-  "0x664e58570e5835b99d281f12dd14d350315d7e2a": {
-    "symbol": "uPX",
-    "name": "uPX",
+  "0x57fde0a71132198bbec939b98976993d8d89d225": {
+    "symbol": "HEX",
+    "name": "HEX from Ethereum",
+    "decimals": 8,
+    "iconPath": "/tokens/0x57fde0a71132198bbec939b98976993d8d89d225.webp"
+  },
+  "0xefd766ccb38eaf1dfd701853bfce31359239f305": {
+    "symbol": "DAI",
+    "name": "Dai Stablecoin from Ethereum",
     "decimals": 18,
-    "iconPath": "/tokens/0x664e58570e5835b99d281f12dd14d350315d7e2a.webp"
+    "iconPath": "/tokens/0xefd766ccb38eaf1dfd701853bfce31359239f305.webp"
+  },
+  "0x144cd22aaa2a80fed0bb8b1deaddc51a53df1d50": {
+    "symbol": "INCD",
+    "name": "INC Dollar",
+    "decimals": 18,
+    "iconPath": "/tokens/0x144cd22aaa2a80fed0bb8b1deaddc51a53df1d50.webp"
+  },
+  "0xa1077a294dde1b09bb078844df40758a5d0f9a27": {
+    "symbol": "WPLS",
+    "name": "Wrapped Pulse",
+    "decimals": 18,
+    "iconPath": "/tokens/0xa1077a294dde1b09bb078844df40758a5d0f9a27.webp"
+  },
+  "0x6c203a555824ec90a215f37916cf8db58ebe2fa3": {
+    "symbol": "PRINT",
+    "name": "INC Printer",
+    "decimals": 18,
+    "iconPath": "/tokens/0x6c203a555824ec90a215f37916cf8db58ebe2fa3.webp"
+  },
+  "0x378b04a0e24dbf08dca65f3c87ad9dafc1d0dd9d": {
+    "symbol": "PKTTN",
+    "name": "PulseKitten",
+    "decimals": 18,
+    "iconPath": "/tokens/0x378b04a0e24dbf08dca65f3c87ad9dafc1d0dd9d.webp"
+  },
+  "0x0cb6f5a34ad42ec934882a05265a7d5f59b51a2f": {
+    "symbol": "USDT",
+    "name": "Tether USD from Ethereum",
+    "decimals": 6,
+    "iconPath": "/tokens/0x0cb6f5a34ad42ec934882a05265a7d5f59b51a2f.webp"
+  },
+  "0xec4252e62c6de3d655ca9ce3afc12e553ebba274": {
+    "symbol": "PUMP",
+    "name": "PUMP.tires",
+    "decimals": 18,
+    "iconPath": "/tokens/0xec4252e62c6de3d655ca9ce3afc12e553ebba274.webp"
+  },
+  "0x15d38573d2feeb82e7ad5187ab8c1d52810b1f07": {
+    "symbol": "USDC",
+    "name": "USD Coin from Ethereum",
+    "decimals": 6,
+    "iconPath": "/tokens/0x15d38573d2feeb82e7ad5187ab8c1d52810b1f07.webp"
+  },
+  "0xe33a5ae21f93acec5cfc0b7b0fdbb65a0f0be5cc": {
+    "symbol": "MOST",
+    "name": "MostWanted",
+    "decimals": 18,
+    "iconPath": "/tokens/0xe33a5ae21f93acec5cfc0b7b0fdbb65a0f0be5cc.webp"
+  },
+  "0xc2472877f596d5052883b93777325dd7f7d11c96": {
+    "symbol": "TOPHAT",
+    "name": "TOP HAT",
+    "decimals": 18,
+    "iconPath": "/tokens/0xc2472877f596d5052883b93777325dd7f7d11c96.webp"
+  },
+  "0xe43b3cee3554e120213b8b69caf690b6c04a7ec0": {
+    "symbol": "urmom",
+    "name": "urmom",
+    "decimals": 18,
+    "iconPath": "/tokens/0xe43b3cee3554e120213b8b69caf690b6c04a7ec0.webp"
+  },
+  "0x4eb7c1c05087f98ae617d006f48914ee73ff8d2a": {
+    "symbol": "XGAME",
+    "name": "XGAME.IO",
+    "decimals": 18,
+    "iconPath": "/tokens/0x4eb7c1c05087f98ae617d006f48914ee73ff8d2a.webp"
   },
   "0x131bf51e864024df1982f2cd7b1c786e1a005152": {
     "symbol": "uP",
@@ -53,11 +155,23 @@
     "decimals": 18,
     "iconPath": "/tokens/0x131bf51e864024df1982f2cd7b1c786e1a005152.webp"
   },
-  "0x8bdb63033b02c15f113de51ea1c3a96af9e8ecb5": {
-    "symbol": "AXIS",
-    "name": "AxisAlive",
+  "0x664e58570e5835b99d281f12dd14d350315d7e2a": {
+    "symbol": "uPX",
+    "name": "uPX",
     "decimals": 18,
-    "iconPath": "/tokens/0x8bdb63033b02c15f113de51ea1c3a96af9e8ecb5.webp"
+    "iconPath": "/tokens/0x664e58570e5835b99d281f12dd14d350315d7e2a.webp"
+  },
+  "0x2858d7b77598ea9d35273abfa86ecb25a7e490f5": {
+    "symbol": "5555",
+    "name": "HEX.COM Diamond",
+    "decimals": 18,
+    "iconPath": "/tokens/0x2858d7b77598ea9d35273abfa86ecb25a7e490f5.webp"
+  },
+  "0x8d36123903f504eb81eeb832727af517c0db26bd": {
+    "symbol": "NOPE",
+    "name": "Nope",
+    "decimals": 18,
+    "iconPath": "/tokens/0x8d36123903f504eb81eeb832727af517c0db26bd.webp"
   },
   "0x8da17db850315a34532108f0f5458fc0401525f6": {
     "symbol": "SOLIDX",
@@ -65,10 +179,16 @@
     "decimals": 18,
     "iconPath": "/tokens/0x8da17db850315a34532108f0f5458fc0401525f6.webp"
   },
-  "0xf330cb1d41052dbc74d3325376cb82e99454e501": {
-    "symbol": "FIRE",
-    "name": "HEXFIREIO",
+  "0x8bdb63033b02c15f113de51ea1c3a96af9e8ecb5": {
+    "symbol": "AXIS",
+    "name": "AxisAlive",
     "decimals": 18,
-    "iconPath": "/tokens/0xf330cb1d41052dbc74d3325376cb82e99454e501.webp"
+    "iconPath": "/tokens/0x8bdb63033b02c15f113de51ea1c3a96af9e8ecb5.webp"
+  },
+  "0x3819f64f282bf135d62168c1e513280daf905e06": {
+    "symbol": "HDRN",
+    "name": "Hedron",
+    "decimals": 9,
+    "iconPath": "/tokens/0x3819f64f282bf135d62168c1e513280daf905e06.webp"
   }
 }
