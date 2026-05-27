@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { poolsData, copyData } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { useLivePoolDetail, useLiveCandles } from "@/lib/useLivePools";
+import { formatUsd } from "@/lib/livePools";
 
 function formatTime(d: Date): string {
   return d.toLocaleTimeString("en-AU", { hour12: false });
@@ -56,11 +57,21 @@ export function PoolDetailClient({ params }: { params: Promise<{ id: string }> }
   }
 
   const displayApr = livePool ? fmtPct(livePool.aprAllTime) : (wplsDetail?.aprSinceInception ?? pool.apr30d);
-  const displayTvl = livePool?.tvl ?? wplsDetail?.tvl ?? pool.tvl;
-  const displayVolume = wplsDetail?.volume24h ?? pool.volume24h;
-  const displayFees = wplsDetail?.fees24h ?? "$0.00";
-  const displayIl = wplsDetail?.impermanentLoss ?? "0.00%";
-  const displayIlRaw = wplsDetail?.impermanentLossRaw ?? 0;
+  // TVL: DexScreener USD value → static fallback "—" (never show token-count-as-dollars)
+  const displayTvl = livePool?.tvlUsd != null
+    ? formatUsd(livePool.tvlUsd)
+    : (livePool?.tvl ?? "—");
+  // Volume: DexScreener USD value → "—" (never show static fabricated $894.6K)
+  const displayVolume = livePool?.volume24hUsd != null
+    ? formatUsd(livePool.volume24hUsd)
+    : "—";
+  // Fees: DexScreener-derived (volume × feeIndex) → "—"
+  const displayFees = livePool?.fees24hUsd != null
+    ? formatUsd(livePool.fees24hUsd)
+    : "—";
+  // Impermanent Loss: no historical price data → always "—" (never fabricate -2.45%)
+  const displayIl = "—";
+  const displayIlRaw = 0;
 
   const myPositionData = wplsDetail?.myPosition ?? {
     shareOfPool: "0.00%", fundBalance: "$0.00", anchorBalance: "$0.00",
@@ -69,8 +80,8 @@ export function PoolDetailClient({ params }: { params: Promise<{ id: string }> }
 
   const poolReserves = livePool
     ? {
-        fund: { symbol: livePool.pair[0], amount: livePool.fundReserveAmount.toLocaleString("en-AU", { maximumFractionDigits: 0 }), amountUsd: livePool.tvl },
-        anchor: { symbol: livePool.pair[1], amount: livePool.anchorReserveAmount.toLocaleString("en-AU", { maximumFractionDigits: 0 }), amountUsd: "$—" },
+        fund: { symbol: livePool.pair[0], amount: livePool.fundReserveAmount.toLocaleString("en-AU", { maximumFractionDigits: 0 }), amountUsd: livePool.tvlUsd != null ? formatUsd(livePool.tvlUsd) : "—" },
+        anchor: { symbol: livePool.pair[1], amount: livePool.anchorReserveAmount.toLocaleString("en-AU", { maximumFractionDigits: 0 }), amountUsd: "—" },
       }
     : (wplsDetail?.poolReserves ?? {
         fund: { symbol: pool.pair[0], amount: "0", amountUsd: "$0.00" },
@@ -140,7 +151,7 @@ export function PoolDetailClient({ params }: { params: Promise<{ id: string }> }
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 mb-6 sm:mb-8">
         <DetailStatCard label="APR Since Inception" value={displayApr} icon={<Target className="w-5 h-5" />} iconBg="bg-[#EDE9FE]" iconColor="#8B5CF6" tooltipKey="aprSinceInception" />
         <DetailStatCard label="TVL" value={displayTvl} icon={<BarChart3 className="w-5 h-5" />} iconBg="bg-[#DBEAFE]" iconColor="#3B82F6" tooltipKey="totalTvl" />
-        <DetailStatCard label="24H Volume" value={displayVolume} subValue={wplsDetail ? `▲ ${wplsDetail.volume24hChangePercent}% vs yesterday` : undefined} subValueColor="up" icon={<Activity className="w-5 h-5" />} iconBg="bg-[#FCE7F3]" iconColor="#EC4899" tooltipKey="totalPoolVolume" />
+        <DetailStatCard label="24H Volume" value={displayVolume} icon={<Activity className="w-5 h-5" />} iconBg="bg-[#FCE7F3]" iconColor="#EC4899" tooltipKey="totalPoolVolume" />
         <DetailStatCard label="Fees (24H)" value={displayFees} icon={<Wallet className="w-5 h-5" />} iconBg="bg-[#DBEAFE]" iconColor="#3B82F6" tooltipKey="fees24h" />
         <DetailStatCard label="Impermanent Loss" value={displayIl} subValue="vs HODL" subValueColor={displayIlRaw < 0 ? "down" : "up"} icon={<TrendingDown className="w-5 h-5" />} iconBg="bg-[#FEF3C7]" iconColor="#F59E0B" tooltipKey="impermanentLoss" />
       </div>

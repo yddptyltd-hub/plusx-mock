@@ -1,7 +1,7 @@
 "use client";
 
 import useSWR from "swr";
-import { fetchLivePools, fetchPoolCandles, LivePool, Candle } from "./livePools";
+import { fetchLivePoolsEnriched, fetchPoolCandles, LivePool, Candle } from "./livePools";
 import staticPools from "@/data/pools.json";
 
 type StaticPool = (typeof staticPools.pools)[number];
@@ -10,7 +10,7 @@ export type AnyPool = LivePool | StaticPool;
 export function useLivePools() {
   const { data, error, isLoading, isValidating } = useSWR<LivePool[]>(
     "live-pools",
-    fetchLivePools,
+    fetchLivePoolsEnriched,
     {
       refreshInterval: 60_000,
       dedupingInterval: 30_000,
