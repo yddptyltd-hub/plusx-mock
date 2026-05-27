@@ -1,10 +1,12 @@
 /**
- * livePools.ts — v1.1 live data fetching from lpx.plusx.app/watcher/*
+ * livePools.ts — v1.2 live data fetching from lpx.plusx.app/watcher/*
  *
  * All endpoints are CORS-open (no proxy needed, no auth required).
- * Invariant: the shape returned here must be assignment-compatible with
- * the pool objects in data/pools.json so existing components need no changes.
+ * Invariant: TVL/Volume/Fees shown in the UI are USD values from DexScreener,
+ * never raw token counts mislabeled as dollars.
  */
+
+import { findPairForLPX } from "./dexscreener";
 
 const BASE = "https://lpx.plusx.app/watcher";
 
@@ -62,8 +64,14 @@ export interface LivePool {
   pair: [string, string];
   tvl: string;
   tvlRaw: number;
+  // USD values sourced from DexScreener (null = not yet enriched or pair not found)
+  tvlUsd: number | null;
   volume24h: string;
   volume24hRaw: number;
+  volume24hUsd: number | null;
+  fees24hUsd: number | null;
+  priceUsd: number | null;
+  pairCreatedAt: number | null; // unix ms from DexScreener
   apr30d: string;
   apr30dRaw: number;
   managedMode: "Managed" | "Solo" | "Immutable";
@@ -122,6 +130,18 @@ function formatTokenAmount(amount: number): string {
   return `$${amount.toFixed(4)}`;
 }
 
+/**
+ * Format a USD dollar amount for display.
+ * e.g. 1_234_567 → "$1.2M", 45_000 → "$45.0K", 94.3 → "$94.30"
+ */
+export function formatUsd(amount: number): string {
+  if (amount >= 1_000_000_000) return `$${(amount / 1_000_000_000).toFixed(1)}B`;
+  if (amount >= 1_000_000) return `$${(amount / 1_000_000).toFixed(1)}M`;
+  if (amount >= 1_000) return `$${(amount / 1_000).toFixed(1)}K`;
+  if (amount >= 1) return `$${amount.toFixed(2)}`;
+  return `$${amount.toFixed(4)}`;
+}
+
 function buildPoolId(fundSymbol: string, anchorSymbol: string, poolId: number): string {
   const slugify = (s: string) =>
     s.toLowerCase().replace(/[()]/g, "").replace(/\s+/g, "-");
@@ -136,18 +156,23 @@ function deriveManagedMode(raw: RawPool): "Managed" | "Solo" | "Immutable" {
 
 function mapPool(raw: RawPool): LivePool {
   const fundAmount = weiToDecimal(raw.reserves.fundRaw, raw.fundToken.decimals);
+  // tvlRaw stores the raw token count — NOT dollars. Used only for relative
+  // sorting until DexScreener enrichment overwrites tvlRaw with USD value.
   const tvlRaw = fundAmount;
-  const tvl = formatTokenAmount(tvlRaw);
   const apr30dRaw = (raw.apr30d ?? 0) * 100;
   const aprAllTime = (raw.aprAllTime ?? 0) * 100;
-
   return {
     id: buildPoolId(raw.fundToken.symbol, raw.anchorToken.symbol, raw.poolId),
     pair: [raw.fundToken.symbol, raw.anchorToken.symbol],
-    tvl,
+    tvl: "—",
     tvlRaw,
-    volume24h: "$0",
+    tvlUsd: null,
+    volume24h: "—",
     volume24hRaw: 0,
+    volume24hUsd: null,
+    fees24hUsd: null,
+    priceUsd: null,
+    pairCreatedAt: null,
     apr30d: `${apr30dRaw.toFixed(1)}%`,
     apr30dRaw,
     managedMode: deriveManagedMode(raw),
@@ -203,6 +228,50 @@ export async function fetchLivePools(): Promise<LivePool[]> {
     .filter((p) => !p.isClosed)
     .sort((a, b) => a.poolId - b.poolId)
     .map((p) => mapPool(p));
+}
+
+/**
+ * Enrich pools with USD values from DexScreener (parallel fetch per pool).
+ * Pools with no DexScreener match keep tvl/volume as "—".
+ */
+export async function enrichWithDexScreener(pools: LivePool[]): Promise<LivePool[]> {
+  return Promise.all(
+    pools.map(async (pool) => {
+      const pair = await findPairForLPX(pool.fundTokenAddress, pool.anchorTokenAddress);
+      if (!pair) return pool;
+      const tvlUsd = pair.liquidity?.usd ?? null;
+      const volume24hUsd = pair.volume?.h24 ?? null;
+      const fees24hUsd =
+        volume24hUsd !== null && pool.feeIndex > 0
+          ? volume24hUsd * pool.feeIndex
+          : null;
+      const priceUsd = pair.priceUsd ? parseFloat(pair.priceUsd) : null;
+      const pairCreatedAt = pair.pairCreatedAt ?? null;
+      const ageDays =
+        pairCreatedAt !== null
+          ? Math.floor((Date.now() - pairCreatedAt) / (1000 * 60 * 60 * 24))
+          : 0;
+      return {
+        ...pool,
+        tvl: tvlUsd !== null ? formatUsd(tvlUsd) : "—",
+        tvlRaw: tvlUsd ?? pool.tvlRaw,
+        tvlUsd,
+        volume24h: volume24hUsd !== null ? formatUsd(volume24hUsd) : "—",
+        volume24hRaw: volume24hUsd ?? pool.volume24hRaw,
+        volume24hUsd,
+        fees24hUsd,
+        priceUsd,
+        pairCreatedAt,
+        ageDays,
+      };
+    })
+  );
+}
+
+/** Convenience: fetch SearchLPXs + enrich with DexScreener USD values. */
+export async function fetchLivePoolsEnriched(): Promise<LivePool[]> {
+  const pools = await fetchLivePools();
+  return enrichWithDexScreener(pools);
 }
 
 export async function fetchPoolCandles(
