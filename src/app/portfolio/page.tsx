@@ -36,11 +36,11 @@ export default function Portfolio() {
         <div className="flex gap-4">
           <div className="bg-white border border-border rounded-2xl px-6 py-4 shadow-sm min-w-[180px]">
             <span className="text-xs font-medium text-text-secondary block mb-1">Total Portfolio Value</span>
-            <span className="text-xl font-bold text-text-primary">$2,344.26</span>
+            <span className="text-xl font-bold text-text-primary">—</span>
           </div>
           <div className="bg-white border border-border rounded-2xl px-6 py-4 shadow-sm min-w-[180px]">
             <span className="text-xs font-medium text-text-secondary block mb-1">Claimable Yield</span>
-            <span className="text-xl font-bold text-brand-teal-text">$20.32</span>
+            <span className="text-xl font-bold text-brand-teal-text">—</span>
           </div>
           <div className="bg-white border border-border rounded-2xl px-6 py-4 shadow-sm min-w-[180px]">
             <span className="text-xs font-medium text-text-secondary block mb-1">PnL vs HODL</span>

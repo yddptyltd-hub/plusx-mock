@@ -6,11 +6,11 @@ import { TokenIcon } from "@/components/PoolPairIcons";
 import { ShieldCheck } from "lucide-react";
 
 const VALIDATORS = [
-  { id: 1, name: "Alpha Node", status: "Active", staked: "1.2B PLS", apr: "8.4%", uptime: "99.9%" },
+  { id: 1, name: "Alpha Node", status: "Active", staked: "—", apr: "8.4%", uptime: "99.9%" },
   { id: 2, name: "Nexus Staking", status: "Active", staked: "850M PLS", apr: "8.2%", uptime: "99.8%" },
-  { id: 3, name: "Validator Prime", status: "Active", staked: "2.1B PLS", apr: "8.5%", uptime: "100%" },
+  { id: 3, name: "Validator Prime", status: "Active", staked: "—", apr: "8.5%", uptime: "100%" },
   { id: 4, name: "Pulse Guard", status: "Active", staked: "430M PLS", apr: "8.1%", uptime: "99.7%" },
-  { id: 5, name: "Zenith Node", status: "Active", staked: "1.5B PLS", apr: "8.3%", uptime: "99.9%" },
+  { id: 5, name: "Zenith Node", status: "Active", staked: "—", apr: "8.3%", uptime: "99.9%" },
 ];
 
 export default function ValidatorX() {
