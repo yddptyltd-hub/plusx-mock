@@ -1,0 +1,267 @@
+{
+  "ts": 1779947599,
+  "snapshot_source": "DexScreener via host (macOS)",
+  "anchor": {
+    "address": "0xefd766ccb38eaf1dfd701853bfce31359239f305",
+    "symbol": "DAI(ETH)",
+    "price_usd": 1.0
+  },
+  "tokens": {
+    "0xa1077a294dde1b09bb078844df40758a5d0f9a27": {
+      "symbol": "WPLS",
+      "decimals": 18,
+      "price_usd": 6.954e-06,
+      "route": "1-hop via DAI (liq $818,356)",
+      "hops": 1,
+      "liquidity_used_usd": 818355.68
+    },
+    "0xefd766ccb38eaf1dfd701853bfce31359239f305": {
+      "symbol": "DAI",
+      "decimals": 18,
+      "price_usd": 1.0,
+      "route": "DAI(ETH) oracle peg",
+      "hops": 0,
+      "liquidity_used_usd": null
+    },
+    "0x7fb5120d2db148e91f572d2f69bc04fe454dbd9b": {
+      "symbol": "uPLS",
+      "decimals": 18,
+      "price_usd": 8.4442422e-06,
+      "route": "2-hop via WPLS (liq $2,580)",
+      "hops": 2,
+      "liquidity_used_usd": 2580.16
+    },
+    "0x95b303987a60c71504d99aa1b13b4da07b0790ab": {
+      "symbol": "PLSX",
+      "decimals": 18,
+      "price_usd": 5.317e-06,
+      "route": "1-hop via DAI (liq $81,489)",
+      "hops": 1,
+      "liquidity_used_usd": 81489.07
+    },
+    "0x2b591e99afe9f32eaa6214f7b7629768c40eeb39": {
+      "symbol": "HEX",
+      "decimals": 8,
+      "price_usd": 0.001145,
+      "route": "1-hop via DAI (liq $92,129)",
+      "hops": 1,
+      "liquidity_used_usd": 92128.96
+    },
+    "0x57fde0a71132198bbec939b98976993d8d89d225": {
+      "symbol": "HEX",
+      "decimals": 8,
+      "price_usd": 0.0005102,
+      "route": "1-hop via DAI (liq $69)",
+      "hops": 1,
+      "liquidity_used_usd": 68.78
+    },
+    "0x2fa878ab3f87cc1c9737fc071108f904c0b0c95d": {
+      "symbol": "INC",
+      "decimals": 18,
+      "price_usd": 0.3181,
+      "route": "1-hop via DAI (liq $36,450)",
+      "hops": 1,
+      "liquidity_used_usd": 36449.61
+    },
+    "0x664e58570e5835b99d281f12dd14d350315d7e2a": {
+      "symbol": "uPX",
+      "decimals": 18,
+      "price_usd": 2.30413836e-05,
+      "route": "2-hop via WPLS (liq $13,244)",
+      "hops": 2,
+      "liquidity_used_usd": 13243.88
+    },
+    "0x131bf51e864024df1982f2cd7b1c786e1a005152": {
+      "symbol": "uP",
+      "decimals": 18,
+      "price_usd": 0.0599,
+      "route": "1-hop via DAI (liq $954)",
+      "hops": 1,
+      "liquidity_used_usd": 954.27
+    },
+    "0x8bdb63033b02c15f113de51ea1c3a96af9e8ecb5": {
+      "symbol": "AXIS",
+      "decimals": 18,
+      "price_usd": 444.08324,
+      "route": "1-hop via DAI (liq $488)",
+      "hops": 1,
+      "liquidity_used_usd": 488.48
+    },
+    "0x8da17db850315a34532108f0f5458fc0401525f6": {
+      "symbol": "SOLIDX",
+      "decimals": 18,
+      "price_usd": 0.16308987,
+      "route": "2-hop via INC (liq $185,605)",
+      "hops": 2,
+      "liquidity_used_usd": 185604.69
+    },
+    "0xf330cb1d41052dbc74d3325376cb82e99454e501": {
+      "symbol": "FIRE",
+      "decimals": 18,
+      "price_usd": 5.958e-07,
+      "route": "1-hop via DAI (liq $168)",
+      "hops": 1,
+      "liquidity_used_usd": 168
+    },
+    "0x8d36123903f504eb81eeb832727af517c0db26bd": {
+      "symbol": "NOPE",
+      "decimals": 18,
+      "price_usd": 2.70538416e-05,
+      "route": "2-hop via WPLS (liq $2,239)",
+      "hops": 2,
+      "liquidity_used_usd": 2239.2
+    },
+    "0x0567ca0de35606e9c260cc2358404b11de21db44": {
+      "symbol": "HELGO",
+      "decimals": 18,
+      "price_usd": 3.823e-05,
+      "route": "1-hop via DAI (liq $504)",
+      "hops": 1,
+      "liquidity_used_usd": 504.15
+    },
+    "0xc2472877f596d5052883b93777325dd7f7d11c96": {
+      "symbol": "TOPHAT",
+      "decimals": 18,
+      "price_usd": 0.0007630672878,
+      "route": "2-hop via WPLS (liq $28,626)",
+      "hops": 2,
+      "liquidity_used_usd": 28626.19
+    },
+    "0xe33a5ae21f93acec5cfc0b7b0fdbb65a0f0be5cc": {
+      "symbol": "MOST",
+      "decimals": 18,
+      "price_usd": 0.002745,
+      "route": "1-hop via DAI (liq $1,066)",
+      "hops": 1,
+      "liquidity_used_usd": 1066.12
+    },
+    "0xec4252e62c6de3d655ca9ce3afc12e553ebba274": {
+      "symbol": "PUMP",
+      "decimals": 18,
+      "price_usd": 0.00108506085324,
+      "route": "2-hop via WPLS (liq $49,557)",
+      "hops": 2,
+      "liquidity_used_usd": 49556.71
+    },
+    "0x3819f64f282bf135d62168c1e513280daf905e06": {
+      "symbol": "HDRN",
+      "decimals": 9,
+      "price_usd": 3.6319399999999998e-09,
+      "route": "2-hop via HEX (liq $3,575)",
+      "hops": 2,
+      "liquidity_used_usd": 3575.46
+    },
+    "0xfc4913214444af5c715cc9f7b52655e788a569ed": {
+      "symbol": "ICSA",
+      "decimals": 9,
+      "price_usd": 0.0046008161,
+      "route": "2-hop via HEX (liq $4,725)",
+      "hops": 2,
+      "liquidity_used_usd": 4724.66
+    },
+    "0x6c203a555824ec90a215f37916cf8db58ebe2fa3": {
+      "symbol": "PRINT",
+      "decimals": 18,
+      "price_usd": 0.00031558701,
+      "route": "2-hop via INC (liq $3,864)",
+      "hops": 2,
+      "liquidity_used_usd": 3863.55
+    },
+    "0x144cd22aaa2a80fed0bb8b1deaddc51a53df1d50": {
+      "symbol": "INCD",
+      "decimals": 18,
+      "price_usd": 1.04882,
+      "route": "1-hop via DAI (liq $114,899)",
+      "hops": 1,
+      "liquidity_used_usd": 114899.37
+    },
+    "0xe43b3cee3554e120213b8b69caf690b6c04a7ec0": {
+      "symbol": "urmom",
+      "decimals": 18,
+      "price_usd": 7.466509799999999e-05,
+      "route": "2-hop via WPLS (liq $8,940)",
+      "hops": 2,
+      "liquidity_used_usd": 8940.16
+    },
+    "0x4eb7c1c05087f98ae617d006f48914ee73ff8d2a": {
+      "symbol": "XGAME",
+      "decimals": 18,
+      "price_usd": 0.00026251419540000004,
+      "route": "2-hop via WPLS (liq $16,658)",
+      "hops": 2,
+      "liquidity_used_usd": 16657.78
+    },
+    "0x2858d7b77598ea9d35273abfa86ecb25a7e490f5": {
+      "symbol": "5555",
+      "decimals": 18,
+      "price_usd": 5.388e-05,
+      "route": "1-hop via DAI (liq $18)",
+      "hops": 1,
+      "liquidity_used_usd": 17.62
+    },
+    "0x378b04a0e24dbf08dca65f3c87ad9dafc1d0dd9d": {
+      "symbol": "PKTTN",
+      "decimals": 18,
+      "price_usd": 3.1807596e-07,
+      "route": "2-hop via WPLS (liq $2,596)",
+      "hops": 2,
+      "liquidity_used_usd": 2595.76
+    },
+    "0xbb101431d43b0e1fc31f000bf96826794806e0b4": {
+      "symbol": "APC",
+      "decimals": 18,
+      "price_usd": null,
+      "route": "UNRESOLVED (no 50/50 PulseX pair found)",
+      "hops": -1,
+      "liquidity_used_usd": null
+    },
+    "0xeb52ac4d25067185f75bab4bcbfbafa28c876a22": {
+      "symbol": "VAULT",
+      "decimals": 18,
+      "price_usd": 0.00014817513659999998,
+      "route": "2-hop via WPLS (liq $12,417)",
+      "hops": 2,
+      "liquidity_used_usd": 12416.6
+    },
+    "0xf6f8db0aba00007681f8faf16a0fda1c9b030b11": {
+      "symbol": "PRVX",
+      "decimals": 18,
+      "price_usd": 4.562e-05,
+      "route": "1-hop via DAI (liq $284,704)",
+      "hops": 1,
+      "liquidity_used_usd": 284704.23
+    },
+    "0xb17d901469b9208b17d916112988a3fed19b5ca1": {
+      "symbol": "WBTC",
+      "decimals": 8,
+      "price_usd": 72926.9726,
+      "route": "1-hop via DAI (liq $295,837)",
+      "hops": 1,
+      "liquidity_used_usd": 295837.15
+    },
+    "0x0cb6f5a34ad42ec934882a05265a7d5f59b51a2f": {
+      "symbol": "USDT",
+      "decimals": 6,
+      "price_usd": 1.001384,
+      "route": "1-hop via DAI (liq $194,963)",
+      "hops": 1,
+      "liquidity_used_usd": 194963.31
+    },
+    "0x02dcdd04e3f455d838cd1249292c58f3b79e3c3c": {
+      "symbol": "WETH",
+      "decimals": 18,
+      "price_usd": 1983.121,
+      "route": "1-hop via DAI (liq $199,730)",
+      "hops": 1,
+      "liquidity_used_usd": 199729.52
+    },
+    "0x15d38573d2feeb82e7ad5187ab8c1d52810b1f07": {
+      "symbol": "USDC",
+      "decimals": 6,
+      "price_usd": 1.0006911,
+      "route": "1-hop via DAI (liq $199,003)",
+      "hops": 1,
+      "liquidity_used_usd": 199002.66
+    }
+  }
+}

@@ -3,6 +3,7 @@ const LPX_API = "https://lpx.plusx.app/watcher/LPXWatcher/SearchLPXs";
 const DEX_API = "https://api.dexscreener.com/latest/dex/tokens/";
 const PLS_RPC = "https://rpc.pulsechain.com";
 const LPX_MAIN = "0x43993C4faA1bE0915A03a3DCF88223D4c1897Cb1";
+const PRICES_SNAPSHOT_URL = "https://plusx-mock.pages.dev/data/prices.json";
 
 interface TokenMeta { symbol: string; decimals: number; }
 interface ResolvedPrice { price_usd: number | null; route: string; hops: number; liquidity_used_usd: number | null; }
@@ -49,9 +50,9 @@ export async function buildPriceGraph(): Promise<unknown> {
     }
   }
 
-  // 3b. LPX_MAIN on-chain RPC fallback for tokens with no DexScreener pairs
-  // For pools where the anchor is DAI (price=1), derive fund price from AMM reserve ratio.
-  // Also fetch on-chain reserves via eth_call reserves(poolId) for pools with a known lpxNumber.
+  // 3b. LPX_MAIN on-chain RPC — fetch reserves for QUANTITY purposes only (TVL calculation).
+  // LPX pools are managed bid/ask market liquidity, NOT 50/50 AMMs. Reserves must NOT be used for price.
+  // Reserves are fetched via eth_call reserves(poolId) for pools with a known lpxNumber.
   interface PoolRaw {
     lpxNumber: number | null;
     isClosed?: boolean;
@@ -153,21 +154,27 @@ export async function buildPriceGraph(): Promise<unknown> {
       }
     }
   }
-  // 4b. Reserve-ratio fallback: derive fund price from on-chain/API reserves when anchor=DAI
-  for (const addr of addrs) {
-    if (prices[addr]) continue;
-    const rc = rpcReserveCache[addr];
-    if (!rc) continue;
-    if (rc.anchorAddr !== DAI) continue; // only DAI-anchored pools give USD price
-    const fundAmount = Number(rc.fundRaw) / 10 ** rc.fundDecimals;
-    const anchorAmount = Number(rc.anchorRaw) / 10 ** rc.anchorDecimals;
-    if (fundAmount <= 0 || anchorAmount <= 0) continue;
-    const price = anchorAmount / fundAmount;
-    prices[addr] = { price_usd: price, route: `LPX_MAIN reserve ratio (anchor=DAI, fund=${rc.fundSymbol})`, hops: 0, liquidity_used_usd: anchorAmount * 2 };
+  // 4b. Host-side snapshot fallback: if DexScreener returned empty for a token (CF Worker blocked),
+  // use the pre-snapshotted prices.json. LPX_MAIN reserves are QUANTITY only — never price.
+  // LPX pools are managed bid/ask market liquidity, NOT 50/50 AMMs; reserve ratios must NOT be used for price.
+  const stillUnresolved = addrs.filter(a => !prices[a]);
+  if (stillUnresolved.length > 0) {
+    try {
+      const snapResp = await fetch(PRICES_SNAPSHOT_URL);
+      if (snapResp.ok) {
+        const snap = await snapResp.json() as { tokens?: Record<string, { price_usd: number | null; route: string; hops: number; liquidity_used_usd: number | null }> };
+        for (const addr of stillUnresolved) {
+          const s = snap.tokens?.[addr];
+          if (s && s.price_usd != null) {
+            prices[addr] = { price_usd: s.price_usd, route: `snapshot: ${s.route}`, hops: s.hops, liquidity_used_usd: s.liquidity_used_usd };
+          }
+        }
+      }
+    } catch { /* snapshot fetch failure is non-fatal */ }
   }
   for (const addr of addrs) {
     if (!prices[addr]) {
-      prices[addr] = { price_usd: null, route: "unresolved (no DexScreener pair, no LPX_MAIN reserve)", hops: -1, liquidity_used_usd: null };
+      prices[addr] = { price_usd: null, route: "UNRESOLVED (no 50/50 pair found via DexScreener)", hops: -1, liquidity_used_usd: null };
     }
   }
 
