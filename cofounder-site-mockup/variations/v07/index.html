@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlusX LPX</title>
+<style>
+  :root { --bg: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); --text: #2c3e50; --border: #cfd9df; --accent: #2980b9; }
+  body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; min-height: 100vh; }
+  .mono { font-family: "SF Mono", monospace; }
+  nav { position: sticky; top: 0; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); z-index: 100; }
+  .nav-menu select { border: 1px solid var(--border); background: transparent; padding: 8px; font-size: 14px; border-radius: 4px; }
+  .btn-wallet { background: var(--text); color: white; border: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+  .layout { display: flex; max-width: 1400px; margin: 40px auto; gap: 40px; padding: 0 32px; }
+  .col-cards { flex: 2; }
+  .col-summary { flex: 1; }
+  .summary-box { background: white; padding: 32px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 100px; }
+  .sum-title { font-size: 24px; font-weight: bold; margin-bottom: 16px; margin-top: 0; }
+  .sum-desc { font-size: 15px; color: #7f8c8d; margin-bottom: 32px; line-height: 1.6; }
+  .kpi-row { display: flex; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--border); }
+  .kpi-row:last-child { border: none; }
+  .kpi-lbl { font-size: 14px; color: #7f8c8d; }
+  .kpi-val { font-size: 18px; font-weight: bold; }
+  .pool-card { background: white; border-radius: 8px; padding: 24px; margin-bottom: 24px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); display: flex; justify-content: space-between; align-items: center; border: 1px solid white; transition: border 0.2s; }
+  .pool-card:hover { border-color: var(--accent); }
+  .pc-left { display: flex; flex-direction: column; gap: 8px; }
+  .pc-name { font-size: 18px; font-weight: bold; }
+  .pc-stats { display: flex; gap: 24px; font-size: 14px; color: #7f8c8d; }
+  .btn-action { background: transparent; border: 2px solid var(--accent); color: var(--accent); padding: 8px 16px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+  .footer { background: var(--text); color: #ecf0f1; padding: 32px; text-align: center; margin-top: 64px; font-size: 12px; }
+  @media (max-width: 900px) { .layout { flex-direction: column-reverse; } .summary-box { position: static; } .pool-card { flex-direction: column; align-items: flex-start; gap: 16px; } }
+</style>
+</head>
+<body>
+  <nav>
+    <div style="font-size:24px; font-weight:900; letter-spacing:-1px;">PlusX</div>
+    <div class="nav-menu">
+      <select onchange="window.location.href=this.value">
+        <option value="#">LPX Dashboard</option>
+        <option value="#">uDEX</option>
+        <option value="#">ValidatorX</option>
+        <option value="#">Portfolio</option>
+        <option value="/methodology/">Docs & Methodology</option>
+      </select>
+    </div>
+    <button class="btn-wallet">Connect Wallet</button>
+  </nav>
+
+  <div class="layout">
+    <div class="col-cards">
+      <h2 style="margin-top:0; margin-bottom:24px;">Active Liquidity Pools</h2>
+
+      <div class="pool-card">
+        <div class="pc-left">
+          <div class="pc-name">WPLS / DAI(ETH)</div>
+          <div class="pc-stats">
+            <div>TVL: <span class="mono" style="color:var(--text);font-weight:bold;">$815.4k</span></div>
+            <div>APR: <span class="mono" style="color:var(--accent);font-weight:bold;">6.6%</span></div>
+            <div>Vol: <span class="mono">$141</span></div>
+          </div>
+        </div>
+        <button class="btn-action">Manage</button>
+      </div>
+
+      <div class="pool-card">
+        <div class="pc-left">
+          <div class="pc-name">uPLS / DAI(ETH)</div>
+          <div class="pc-stats">
+            <div>TVL: <span class="mono" style="color:var(--text);font-weight:bold;">$2.6k</span></div>
+            <div>APR: <span class="mono" style="color:var(--accent);font-weight:bold;">9.5%</span></div>
+            <div>Vol: <span class="mono">$921</span></div>
+          </div>
+        </div>
+        <button class="btn-action">Manage</button>
+      </div>
+
+      <div class="pool-card">
+        <div class="pc-left">
+          <div class="pc-name">PLSX / DAI(ETH)</div>
+          <div class="pc-stats">
+            <div>TVL: <span class="mono" style="color:var(--text);font-weight:bold;">$81.3k</span></div>
+            <div>APR: <span class="mono" style="color:var(--accent);font-weight:bold;">7.6%</span></div>
+            <div>Vol: <span class="mono">$1,635</span></div>
+          </div>
+        </div>
+        <button class="btn-action">Manage</button>
+      </div>
+
+      <div class="pool-card">
+        <div class="pc-left">
+          <div class="pc-name">HEX / DAI(ETH)</div>
+          <div class="pc-stats">
+            <div>TVL: <span class="mono" style="color:var(--text);font-weight:bold;">$46.1k</span></div>
+            <div>APR: <span class="mono" style="color:var(--accent);font-weight:bold;">9.8%</span></div>
+            <div>Vol: <span class="mono">$15.2k</span></div>
+          </div>
+        </div>
+        <button class="btn-action">Manage</button>
+      </div>
+
+      <div class="pool-card">
+        <div class="pc-left">
+          <div class="pc-name">INC / DAI(ETH)</div>
+          <div class="pc-stats">
+            <div>TVL: <span class="mono" style="color:var(--text);font-weight:bold;">$25.2k</span></div>
+            <div>APR: <span class="mono" style="color:var(--accent);font-weight:bold;">8.7%</span></div>
+            <div>Vol: <span class="mono">$1,103</span></div>
+          </div>
+        </div>
+        <button class="btn-action">Manage</button>
+      </div>
+
+    </div>
+
+    <div class="col-summary">
+      <div class="summary-box">
+        <h1 class="sum-title">Protocol Overview</h1>
+        <p class="sum-desc">Liquidity protocol on PulseChain — managed bid/ask, NTZ-shaped LP. Every number verified on-chain. <br><br> Every dollar traceable to an on-chain transaction · <a href="/methodology/">methodology</a></p>
+        <div class="kpi-row"><span class="kpi-lbl">Total TVL</span><span class="kpi-val mono">$951,356</span></div>
+        <div class="kpi-row"><span class="kpi-lbl">Avg APR</span><span class="kpi-val mono">7.04%</span></div>
+        <div class="kpi-row"><span class="kpi-lbl">Total Volume</span><span class="kpi-val mono">$38.1M</span></div>
+        <div class="kpi-row"><span class="kpi-lbl">Active Pools</span><span class="kpi-val mono">35</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div style="max-width:800px; margin:0 auto; margin-bottom:16px;">Methodology page lives at /methodology/ — every number traces to either DexScreener live API or LPX_MAIN reserves at block 26640264 (tx 0x229f26314a43a295d8d681d50f7b2c094d198eab2284dd259bbaf9a3b8fc8135). Snapshot date 2026-03-20.</div>
+    <div class="mono" style="color:#bdc3c7;">Contract: LPX_MAIN 0x123...456 | Verified Build</div>
+  </div>
+</body>
+</html>

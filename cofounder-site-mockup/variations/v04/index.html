@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlusX LPX Report</title>
+<style>
+  :root { --bg: #ffffff; --text: #000000; --text-muted: #555555; --border: #000000; }
+  body { font-family: "Inter", sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; }
+  header { padding: 24px 48px; border-bottom: 2px solid var(--border); display: flex; justify-content: space-between; align-items: flex-end; }
+  .brand-logo { font-size: 24px; font-weight: 900; letter-spacing: -0.05em; text-transform: uppercase; }
+  .header-actions { display: flex; gap: 16px; }
+  .btn-sec { border: 1px solid var(--border); background: #fff; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; text-transform: uppercase; }
+  .btn-prim { background: var(--border); color: #fff; border: none; padding: 8px 16px; font-size: 13px; font-weight: 600; cursor: pointer; text-transform: uppercase; }
+  .tabs { padding: 0 48px; border-bottom: 1px solid #eaeaea; display: flex; gap: 32px; background: #fafafa; }
+  .tabs a { padding: 16px 0; color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; text-transform: uppercase; }
+  .tabs a.active { color: var(--text); border-bottom: 2px solid var(--text); font-weight: 700; }
+  main { padding: 48px; max-width: 1200px; margin: 0 auto; }
+  .report-header { margin-bottom: 48px; }
+  .audit-stamp { font-family: monospace; font-size: 12px; border: 1px solid var(--border); display: inline-block; padding: 4px 8px; margin-bottom: 24px; font-weight: 600; background: #f0f0f0; }
+  .exec-summary { font-size: 18px; line-height: 1.6; font-weight: 400; max-width: 800px; margin-bottom: 32px; }
+  .section-group { margin-bottom: 64px; }
+  .section-title { font-size: 14px; text-transform: uppercase; font-weight: 800; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 24px; color: #333; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .stat-box { border-left: 2px solid var(--border); padding-left: 16px; }
+  .stat-lbl { font-size: 12px; color: var(--text-muted); text-transform: uppercase; font-weight: 600; margin-bottom: 8px; }
+  .stat-val { font-size: 28px; font-weight: 800; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: 16px 8px; border-bottom: 1px solid #eaeaea; text-align: left; font-size: 14px; }
+  th { font-weight: 700; text-transform: uppercase; font-size: 12px; color: var(--text-muted); border-bottom: 1px solid var(--border); }
+  td { font-weight: 500; }
+  .bg-section-1 { background: #fafafa; padding: 32px; margin: -32px -32px 32px -32px; }
+  @media (max-width: 768px) { header, .tabs, main { padding-left: 24px; padding-right: 24px; } .grid-3 { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <header>
+    <div class="brand-logo">PlusX LPX</div>
+    <div class="header-actions">
+      <button class="btn-sec" onclick="window.location.href='/methodology/'">Open Portfolio</a> <a href="#">Docs</button>
+      <button class="btn-prim">Connect Wallet</button>
+    </div>
+  </header>
+  <div class="tabs">
+    <a href="#" class="active">LPX</a>
+    <a href="#">uDEX</a> <a href="#">ValidatorX</a>
+    <a href="#">Portfolio</a> <a href="#">Docs</a>
+  </div>
+  <main>
+    <div class="report-header">
+      <div class="audit-stamp">AS OF DATE: 2026-03-20 | BLK: 26640264</div>
+      <div class="exec-summary">
+        <strong>Executive Summary:</strong> Liquidity protocol on PulseChain — managed bid/ask, NTZ-shaped LP. Every number verified on-chain. Currently managing $951,356 in Total Value Locked across 35 active pools. Every dollar traceable to an on-chain transaction · <a href="/methodology/">methodology</a>
+      </div>
+    </div>
+
+    <div class="section-group bg-section-1">
+      <div class="section-title">Key Performance Indicators</div>
+      <div class="grid-3">
+        <div class="stat-box"><div class="stat-lbl">Total TVL</div><div class="stat-val">$951,356</div></div>
+        <div class="stat-box"><div class="stat-lbl">30-Day Avg APR</div><div class="stat-val">7.04%</div></div>
+        <div class="stat-box"><div class="stat-lbl">Routed Volume</div><div class="stat-val">$38.1M</div></div>
+        <div class="stat-box"><div class="stat-lbl">Liquidity Providers</div><div class="stat-val">920</div></div>
+        <div class="stat-box"><div class="stat-lbl">Cumulative Swaps</div><div class="stat-val">~198,000</div></div>
+        <div class="stat-box"><div class="stat-lbl">PLSX Burn</div><div class="stat-val">$19,060</div></div>
+      </div>
+    </div>
+
+    <div class="section-group">
+      <div class="section-title">Pool Reserves & Yield</div>
+      <table>
+        <thead><tr><th>Asset Pair</th><th>Reserves (TVL)</th><th>Implied Yield (APR)</th><th>24h Volume</th></tr></thead>
+        <tbody>
+          <tr><td><strong>WPLS / DAI(ETH)</strong></td><td>$815.4k</td><td>6.6%</td><td>$141</td></tr><tr><td><strong>uPLS / DAI(ETH)</strong></td><td>$2.6k</td><td>9.5%</td><td>$921</td></tr><tr><td><strong>PLSX / DAI(ETH)</strong></td><td>$81.3k</td><td>7.6%</td><td>$1,635</td></tr><tr><td><strong>HEX / DAI(ETH)</strong></td><td>$46.1k</td><td>9.8%</td><td>$15.2k</td></tr><tr><td><strong>INC / DAI(ETH)</strong></td><td>$25.2k</td><td>8.7%</td><td>$1,103</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="font-size: 11px; color: var(--text-muted); max-width: 800px; border-top: 1px solid var(--border); padding-top: 16px;">
+      Portfolio</a> <a href="#">Docs page lives at /methodology/ — every number traces to either DexScreener live API or LPX_MAIN reserves at block 26640264 (tx 0x229f26314a43a295d8d681d50f7b2c094d198eab2284dd259bbaf9a3b8fc8135). Snapshot date 2026-03-20.
+    </div>
+  </main>
+</body>
+</html>
