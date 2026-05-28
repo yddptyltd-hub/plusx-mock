@@ -2,9 +2,12 @@
   "pools": [
     {
       "id": "wpls-dai-eth",
-      "pair": ["WPLS", "DAI(ETH)"],
-      "tvl": "$2.6B",
-      "tvlRaw": 2600000000,
+      "pair": [
+        "WPLS",
+        "DAI(ETH)"
+      ],
+      "tvl": "$815.4k",
+      "tvlRaw": 815392,
       "volume24h": "$141.1",
       "volume24hRaw": 141.1,
       "apr30d": "7%",
@@ -18,9 +21,12 @@
     },
     {
       "id": "upls-dai-eth",
-      "pair": ["uPLS", "DAI(ETH)"],
-      "tvl": "$15.7B",
-      "tvlRaw": 15700000000,
+      "pair": [
+        "uPLS",
+        "DAI(ETH)"
+      ],
+      "tvl": "$2.6k",
+      "tvlRaw": 2598,
       "volume24h": "$921.6",
       "volume24hRaw": 921.6,
       "apr30d": "5.7%",
@@ -34,9 +40,12 @@
     },
     {
       "id": "plsx-dai-eth",
-      "pair": ["PLSX", "DAI(ETH)"],
-      "tvl": "$15B",
-      "tvlRaw": 15000000000,
+      "pair": [
+        "PLSX",
+        "DAI(ETH)"
+      ],
+      "tvl": "$81.3k",
+      "tvlRaw": 81283,
       "volume24h": "$1.6k",
       "volume24hRaw": 1600,
       "apr30d": "7.9%",
@@ -50,9 +59,12 @@
     },
     {
       "id": "hex-dai-eth",
-      "pair": ["HEX", "DAI(ETH)"],
-      "tvl": "$40.8M",
-      "tvlRaw": 40800000,
+      "pair": [
+        "HEX",
+        "DAI(ETH)"
+      ],
+      "tvl": "$91.3k",
+      "tvlRaw": 91334,
       "volume24h": "$0.014",
       "volume24hRaw": 0.014,
       "apr30d": "8.9%",
@@ -66,9 +78,12 @@
     },
     {
       "id": "ehex-eth-dai-eth",
-      "pair": ["eHEX(ETH)", "DAI(ETH)"],
-      "tvl": "$24M",
-      "tvlRaw": 24000000,
+      "pair": [
+        "eHEX(ETH)",
+        "DAI(ETH)"
+      ],
+      "tvl": "$53",
+      "tvlRaw": 53,
       "volume24h": "$467.3",
       "volume24hRaw": 467.3,
       "apr30d": "12.6%",
@@ -82,9 +97,12 @@
     },
     {
       "id": "inc-dai-eth",
-      "pair": ["INC", "DAI(ETH)"],
-      "tvl": "$47.8k",
-      "tvlRaw": 47800,
+      "pair": [
+        "INC",
+        "DAI(ETH)"
+      ],
+      "tvl": "$36.3k",
+      "tvlRaw": 36268,
       "volume24h": "$365.2",
       "volume24hRaw": 365.2,
       "apr30d": "10%",
@@ -98,9 +116,12 @@
     },
     {
       "id": "ehex-eth-hex",
-      "pair": ["eHEX(ETH)", "HEX"],
-      "tvl": "$10.1M",
-      "tvlRaw": 10100000,
+      "pair": [
+        "eHEX(ETH)",
+        "HEX"
+      ],
+      "tvl": "$220.6k",
+      "tvlRaw": 220582,
       "volume24h": "$5.1M",
       "volume24hRaw": 5100000,
       "apr30d": "17.7%",
@@ -114,9 +135,12 @@
     },
     {
       "id": "hex-ehex-eth",
-      "pair": ["HEX", "eHEX(ETH)"],
-      "tvl": "$10.1M",
-      "tvlRaw": 10100000,
+      "pair": [
+        "HEX",
+        "eHEX(ETH)"
+      ],
+      "tvl": "$220.6k",
+      "tvlRaw": 220582,
       "volume24h": "$3.8M",
       "volume24hRaw": 3800000,
       "apr30d": "9.6%",
@@ -130,9 +154,12 @@
     },
     {
       "id": "upx-up",
-      "pair": ["uPX", "uP"],
-      "tvl": "$2.4B",
-      "tvlRaw": 2400000000,
+      "pair": [
+        "uPX",
+        "uP"
+      ],
+      "tvl": "$13.1k",
+      "tvlRaw": 13070,
       "volume24h": "$26.7k",
       "volume24hRaw": 26700,
       "apr30d": "0.7%",
@@ -146,11 +173,14 @@
     },
     {
       "id": "up-upx",
-      "pair": ["uP", "uPX"],
-      "tvl": "$961k",
-      "tvlRaw": 961000,
-      "volume24h": "$898.4M",
-      "volume24hRaw": 898400000,
+      "pair": [
+        "uP",
+        "uPX"
+      ],
+      "tvl": "$10.5k",
+      "tvlRaw": 10526,
+      "volume24h": "$898.4k",
+      "volume24hRaw": 898400,
       "apr30d": "0.8%",
       "apr30dRaw": 0.8,
       "managedMode": "Managed",
@@ -162,9 +192,12 @@
     },
     {
       "id": "upx-dai-eth",
-      "pair": ["uPX", "DAI(ETH)"],
-      "tvl": "$1.9B",
-      "tvlRaw": 1900000000,
+      "pair": [
+        "uPX",
+        "DAI(ETH)"
+      ],
+      "tvl": "$13.1k",
+      "tvlRaw": 13070,
       "volume24h": "$2.1k",
       "volume24hRaw": 2100,
       "apr30d": "3.8%",
@@ -178,9 +211,12 @@
     },
     {
       "id": "up-dai-eth",
-      "pair": ["uP", "DAI(ETH)"],
-      "tvl": "$964.8k",
-      "tvlRaw": 964800,
+      "pair": [
+        "uP",
+        "DAI(ETH)"
+      ],
+      "tvl": "$957",
+      "tvlRaw": 957,
       "volume24h": "$3.4k",
       "volume24hRaw": 3400,
       "apr30d": "3%",
@@ -194,9 +230,12 @@
     },
     {
       "id": "axis-dai-eth",
-      "pair": ["AXIS", "DAI(ETH)"],
-      "tvl": "$53.5",
-      "tvlRaw": 53.5,
+      "pair": [
+        "AXIS",
+        "DAI(ETH)"
+      ],
+      "tvl": "$488",
+      "tvlRaw": 488,
       "volume24h": "$2.2k",
       "volume24hRaw": 2200,
       "apr30d": "3.7%",
@@ -210,9 +249,12 @@
     },
     {
       "id": "solidx-dai-eth",
-      "pair": ["SOLIDX", "DAI(ETH)"],
-      "tvl": "$79.2k",
-      "tvlRaw": 79200,
+      "pair": [
+        "SOLIDX",
+        "DAI(ETH)"
+      ],
+      "tvl": "$185.8k",
+      "tvlRaw": 185837,
       "volume24h": "$48.6",
       "volume24hRaw": 48.6,
       "apr30d": "6.2%",
@@ -226,9 +268,12 @@
     },
     {
       "id": "fire-dai-eth",
-      "pair": ["FIRE", "DAI(ETH)"],
-      "tvl": "$29.3B",
-      "tvlRaw": 29300000000,
+      "pair": [
+        "FIRE",
+        "DAI(ETH)"
+      ],
+      "tvl": "$168",
+      "tvlRaw": 168,
       "volume24h": "$18.1",
       "volume24hRaw": 18.1,
       "apr30d": "0.2%",
@@ -243,7 +288,10 @@
   ],
   "wplsDetail": {
     "id": "wpls-dai-eth",
-    "pair": ["WPLS", "DAI(ETH)"],
+    "pair": [
+      "WPLS",
+      "DAI(ETH)"
+    ],
     "lpxNumber": 1,
     "lpxKind": "Custom LPX",
     "managedMode": "Managed",
@@ -277,8 +325,8 @@
       "address": "0xefd766ccb38eaf1dfd701853bfce31359239f305"
     },
     "manager": "0x07b2f1ed9b644db28ad7051bef2ba51d443a8b4c",
-    "tvl": "$2.98M",
-    "tvlRaw": 2980000,
+    "tvl": "$815.4k",
+    "tvlRaw": 815392,
     "volume24h": "$894.6K",
     "volume24hRaw": 894600,
     "volume24hChangePercent": 8784.71,
@@ -310,13 +358,13 @@
     "poolReserves": {
       "fund": {
         "symbol": "WPLS",
-        "amount": "2.98B",
-        "amountUsd": "$1.49M"
+        "amount": "59.1B",
+        "amountUsd": "$407.7k"
       },
       "anchor": {
         "symbol": "DAI(ETH)",
-        "amount": "14.3B",
-        "amountUsd": "$1.49M"
+        "amount": "407.7k",
+        "amountUsd": "$407.7k"
       }
     }
   }

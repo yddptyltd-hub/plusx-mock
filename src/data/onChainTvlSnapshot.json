@@ -1,0 +1,9 @@
+{
+  "totalTvlUsd": 1692208,
+  "poolCount": 15,
+  "note": "15 pools shown in UI; agy measured $951,613 across 43 pools at block 26640264. Difference: UI shows 15 top pools only; some pairs (SOLIDX, uPX) use best available liquidity pair not a direct DAI pair.",
+  "asOfBlock": 26640542,
+  "asOfUtc": "2026-05-28T03:31:38Z",
+  "source": "DexScreener API pulsechain pairs + PulseX WPLS/DAI getReserves() RPC call",
+  "verifiedBy": "agy 2026-05-28 at block 26640264 ($951,613 across 43 pools via BFS from local script)"
+}
