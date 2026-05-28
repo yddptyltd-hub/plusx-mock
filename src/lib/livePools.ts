@@ -96,6 +96,12 @@ export interface LivePool {
   managerRewardIndex: number;
   managerAddress: string;
   poolId: number;
+  // Yield fields from the Watcher API (anchor-denominated)
+  // src: https://lpx.plusx.app/watcher/LPXWatcher/SearchLPXs → totalYieldAnchor, arbYieldAnchor, makerYieldAnchor, arbPercent
+  totalYieldAnchor: number;
+  arbYieldAnchor: number;
+  makerYieldAnchor: number;
+  arbPercent: number;
 }
 
 export interface Candle {
@@ -197,6 +203,10 @@ function mapPool(raw: RawPool): LivePool {
     managerRewardIndex: raw.managerRewardIndex,
     managerAddress: raw.managerAddress,
     poolId: raw.poolId,
+    totalYieldAnchor: 0,
+    arbYieldAnchor: 0,
+    makerYieldAnchor: 0,
+    arbPercent: 0,
   };
 }
 
