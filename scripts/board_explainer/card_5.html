@@ -1,0 +1,48 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+* { box-sizing:border-box; margin:0; padding:0 }
+html, body { width:1080px; height:1920px; background:#ffffff; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif; color:#1a1a1a; overflow:hidden }
+.card { width:1080px; height:1920px; padding:80px; display:flex; flex-direction:column; justify-content:space-between }
+.label { font-size:24px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#4a5568; margin-bottom:24px }
+h1 { font-size:72px; font-weight:700; line-height:1.15; margin-bottom:32px }
+h2 { font-size:52px; font-weight:700; line-height:1.2; margin-bottom:28px }
+p { font-size:36px; line-height:1.6; margin-bottom:20px; color:#1a1a1a }
+.small { font-size:30px; color:#4a5568; line-height:1.5 }
+.footer { font-size:26px; color:#4a5568; font-weight:600; border-top:2px solid #e5e7eb; padding-top:32px }
+.accent { color:#0f766e }
+.bullet { font-size:32px; line-height:1.7; color:#1a1a1a }
+.bullet-item { margin-bottom:12px }
+
+.half { flex:1; padding:32px 0; border-bottom:2px solid #e5e7eb }
+.halves { display:flex; flex-direction:column; flex:1; margin:20px 0 }
+h3 { font-size:46px; font-weight:700; margin-bottom:20px; color:#0f766e }
+.field-list { font-size:30px; line-height:1.8; color:#1a1a1a }
+.fi { margin-bottom:8px }
+.fi-num { font-weight:700; color:#0f766e }
+</style></head>
+<body><div class="card">
+  <div>
+    <div class="label">Thursday + Sunday</div>
+  </div>
+  <div class="halves">
+    <div class="half">
+      <h3>Thursday: 1-page plan, 5 fields, plain text</h3>
+      <div class="field-list">
+        <div class="fi"><span class="fi-num">1 &middot;</span> Your lane</div>
+        <div class="fi"><span class="fi-num">2 &middot;</span> 12-week target (one measurable sentence)</div>
+        <div class="fi"><span class="fi-num">3 &middot;</span> 3 concrete outcomes by week 12</div>
+        <div class="fi"><span class="fi-num">4 &middot;</span> Weekly actions (3&#8211;5 you own)</div>
+        <div class="fi"><span class="fi-num">5 &middot;</span> Risks &amp; asks</div>
+      </div>
+    </div>
+    <div class="half" style="border-bottom:none; padding-top:32px">
+      <h3>Sunday: 5-minute block</h3>
+      <div class="field-list">
+        <div class="fi">Week of _________</div>
+        <div class="fi">Top 3 actions this week in your lane</div>
+        <div class="fi">Execution score last week (0&#8211;5)</div>
+        <div class="fi">One learning + one adjustment</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">Q3 plan &middot; 12 weeks &middot; plusx</div>
+</div></body></html>
