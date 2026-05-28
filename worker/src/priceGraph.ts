@@ -1,6 +1,8 @@
 const DAI = "0xefd766ccb38eaf1dfd701853bfce31359239f305";
 const LPX_API = "https://lpx.plusx.app/watcher/LPXWatcher/SearchLPXs";
 const DEX_API = "https://api.dexscreener.com/latest/dex/tokens/";
+const PLS_RPC = "https://rpc.pulsechain.com";
+const LPX_MAIN = "0x43993C4faA1bE0915A03a3DCF88223D4c1897Cb1";
 
 interface TokenMeta { symbol: string; decimals: number; }
 interface ResolvedPrice { price_usd: number | null; route: string; hops: number; liquidity_used_usd: number | null; }
@@ -32,7 +34,7 @@ export async function buildPriceGraph(): Promise<unknown> {
     const chunk = addrs.slice(i, i + CHUNK_SIZE);
     const results = await Promise.allSettled(
       chunk.map((addr) =>
-        fetch(DEX_API + encodeURIComponent(addr), { headers: { "User-Agent": "plusx-mock-worker" } })
+        fetch(DEX_API + encodeURIComponent(addr), { headers: { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36", "Accept": "application/json" } })
           .then((r) => (r.ok ? (r.json() as Promise<unknown>) : { pairs: [] }))
       )
     );
@@ -45,6 +47,62 @@ export async function buildPriceGraph(): Promise<unknown> {
         pairCache[chunk[j]] = [];
       }
     }
+  }
+
+  // 3b. LPX_MAIN on-chain RPC fallback for tokens with no DexScreener pairs
+  // For pools where the anchor is DAI (price=1), derive fund price from AMM reserve ratio.
+  // Also fetch on-chain reserves via eth_call reserves(poolId) for pools with a known lpxNumber.
+  interface PoolRaw {
+    lpxNumber: number | null;
+    isClosed?: boolean;
+    fundToken: { erc20Address: string; symbol: string; decimals: number };
+    anchorToken: { erc20Address: string; symbol: string; decimals: number };
+    reserves: { fundRaw: string; anchorRaw: string };
+  }
+
+  // Encode eth_call data: selector + uint256 param (32 bytes)
+  function encodeReservesCall(poolId: number): string {
+    const selector = "0x0902f1ac"; // keccak256("reserves(uint256)")[:4]
+    return selector + poolId.toString(16).padStart(64, "0");
+  }
+
+  // Decode two uint256 from eth_call result (128 hex chars = 32 bytes each)
+  function decodeUint256Pair(hex: string): [bigint, bigint] {
+    const clean = hex.startsWith("0x") ? hex.slice(2) : hex;
+    return [BigInt("0x" + clean.slice(0, 64)), BigInt("0x" + clean.slice(64, 128))];
+  }
+
+  // Reserve cache: fundTokenAddr -> reserve data
+  const rpcReserveCache: Record<string, { fundRaw: bigint; anchorRaw: bigint; fundDecimals: number; anchorDecimals: number; anchorAddr: string; fundSymbol: string }> = {};
+  const poolsTyped = pools as PoolRaw[];
+
+  // On-chain RPC for pools with lpxNumber
+  const rpcPools = poolsTyped.filter(p => p.lpxNumber != null && !p.isClosed);
+  if (rpcPools.length > 0) {
+    const rpcCalls = rpcPools.map(p => ({ jsonrpc: "2.0", method: "eth_call", params: [{ to: LPX_MAIN, data: encodeReservesCall(p.lpxNumber as number) }, "latest"], id: p.lpxNumber as number }));
+    try {
+      const rpcResp = await fetch(PLS_RPC, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(rpcCalls) });
+      if (rpcResp.ok) {
+        const rpcResults = (await rpcResp.json()) as Array<{ id: number; result?: string; error?: unknown }>;
+        for (const res of rpcResults) {
+          if (!res.result || res.error) continue;
+          const pool = rpcPools.find(p => p.lpxNumber === res.id);
+          if (!pool) continue;
+          const [fundRaw, anchorRaw] = decodeUint256Pair(res.result);
+          const fa = pool.fundToken.erc20Address.toLowerCase();
+          rpcReserveCache[fa] = { fundRaw, anchorRaw, fundDecimals: pool.fundToken.decimals, anchorDecimals: pool.anchorToken.decimals, anchorAddr: pool.anchorToken.erc20Address.toLowerCase(), fundSymbol: pool.fundToken.symbol };
+        }
+      }
+    } catch { /* RPC failure is non-fatal; API reserve fallback below covers it */ }
+  }
+
+  // API-returned reserves as fallback for pools without lpxNumber (or RPC miss)
+  for (const pool of poolsTyped) {
+    if (pool.isClosed) continue;
+    const fa = pool.fundToken.erc20Address.toLowerCase();
+    if (rpcReserveCache[fa]) continue;
+    if (!pool.reserves?.fundRaw || !pool.reserves?.anchorRaw) continue;
+    rpcReserveCache[fa] = { fundRaw: BigInt(pool.reserves.fundRaw), anchorRaw: BigInt(pool.reserves.anchorRaw), fundDecimals: pool.fundToken.decimals, anchorDecimals: pool.anchorToken.decimals, anchorAddr: pool.anchorToken.erc20Address.toLowerCase(), fundSymbol: pool.fundToken.symbol };
   }
 
   // 4. BFS price resolution up to 4 hops
@@ -95,9 +153,21 @@ export async function buildPriceGraph(): Promise<unknown> {
       }
     }
   }
+  // 4b. Reserve-ratio fallback: derive fund price from on-chain/API reserves when anchor=DAI
+  for (const addr of addrs) {
+    if (prices[addr]) continue;
+    const rc = rpcReserveCache[addr];
+    if (!rc) continue;
+    if (rc.anchorAddr !== DAI) continue; // only DAI-anchored pools give USD price
+    const fundAmount = Number(rc.fundRaw) / 10 ** rc.fundDecimals;
+    const anchorAmount = Number(rc.anchorRaw) / 10 ** rc.anchorDecimals;
+    if (fundAmount <= 0 || anchorAmount <= 0) continue;
+    const price = anchorAmount / fundAmount;
+    prices[addr] = { price_usd: price, route: `LPX_MAIN reserve ratio (anchor=DAI, fund=${rc.fundSymbol})`, hops: 0, liquidity_used_usd: anchorAmount * 2 };
+  }
   for (const addr of addrs) {
     if (!prices[addr]) {
-      prices[addr] = { price_usd: null, route: "UNRESOLVED (no PulseChain pair found)", hops: -1, liquidity_used_usd: null };
+      prices[addr] = { price_usd: null, route: "unresolved (no DexScreener pair, no LPX_MAIN reserve)", hops: -1, liquidity_used_usd: null };
     }
   }
 

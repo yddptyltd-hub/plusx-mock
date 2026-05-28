@@ -267,6 +267,14 @@ async function handleFetch(request: Request, env: Env): Promise<Response> {
   }
 
   if (path === "/api/price-graph") {
+    const refresh = url.searchParams.get("refresh") === "1";
+    if (refresh) {
+      try {
+        await runPriceGraph(env);
+      } catch (err) {
+        return new Response(JSON.stringify({ error: "price_graph_refresh_failed", detail: String(err) }), { status: 500, headers: { ...CORS, "Cache-Control": "no-store" } });
+      }
+    }
     const value = await env.SNAPSHOTS.get("price_graph:latest");
     if (!value) {
       return new Response(
@@ -275,7 +283,7 @@ async function handleFetch(request: Request, env: Env): Promise<Response> {
       );
     }
     return new Response(value, {
-      headers: { ...CORS, "Cache-Control": "public, max-age=300" },
+      headers: { ...CORS, "Cache-Control": refresh ? "no-store" : "public, max-age=300" },
     });
   }
 
