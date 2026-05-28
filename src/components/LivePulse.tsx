@@ -1,26 +1,16 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
-import { flushSync } from "react-dom";
+import React, { useMemo } from "react";
 import { useLivePools } from "@/lib/useLivePools";
 import type { LivePool } from "@/lib/livePools";
 import { useVolatilityTop10 } from "@/lib/useVolatility";
 import { Activity, TrendingUp, TrendingDown, Plus, BarChart3, Coins } from "lucide-react";
 
-// Wrap a state commit so it animates via the browser's View Transitions API
-// when supported. Children carrying CSS `view-transition-name` cross-fade.
-// Older browsers fall back to a plain setter — zero visible regression.
+// Simple pass-through — previously used document.startViewTransition() which
+// fired on every SWR revalidation and logged "Transition was skipped" thousands
+// of times in DevTools when a new transition started before the prior one finished.
+// View-transition animations aren't worth 4800+ console errors on the cofounder demo.
 function useViewTransitionUpdate<T>(value: T): T {
-  const [committed, setCommitted] = useState(value);
-  useEffect(() => {
-    if (typeof document.startViewTransition !== "function") {
-      setCommitted(value);
-      return;
-    }
-    document.startViewTransition(() => {
-      flushSync(() => setCommitted(value));
-    });
-  }, [value]);
-  return committed;
+  return value;
 }
 
 function fmtUsd(n: number | null | undefined): string {
