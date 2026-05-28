@@ -2,8 +2,8 @@
 import { useState } from "react";
 import { Download, Film } from "lucide-react";
 
-const GIF_PATH = "/share/lpx-story.gif";
-const MP4_PATH = "/share/lpx-story.mp4";
+const GIF_PATH = "/share/lpx-story-v2.gif";
+const MP4_PATH = "/share/lpx-story-v2.mp4";
 
 export function StoryShareCard() {
   const [missing, setMissing] = useState(false);
@@ -23,7 +23,7 @@ export function StoryShareCard() {
       <div className="flex flex-wrap gap-2 items-center">
         <a
           href={GIF_PATH}
-          download="plusx-lpx-story.gif"
+          download="plusx-lpx-story-v2.gif"
           onError={() => setMissing(true)}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md border border-brand-teal/40 bg-brand-teal/10 text-brand-teal-dark hover:bg-brand-teal/20"
         >
