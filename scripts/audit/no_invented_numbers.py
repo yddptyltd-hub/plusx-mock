@@ -6,7 +6,10 @@ Exit 0 = clean. Exit 1 = violations found.
 
 Usage:
   python3 scripts/audit/no_invented_numbers.py
-  python3 scripts/audit/no_invented_numbers.py --fix   # seed // src: TODO above each violation
+  python3 scripts/audit/no_invented_numbers.py --fix   # report file:line pairs only (no writes)
+
+NOTE: --fix is intentionally report-only. It does NOT modify source files.
+A '// src: TODO' line is itself a violation — it must be replaced with a real source URL.
 """
 
 import re
@@ -21,8 +24,9 @@ PATTERNS = [
     re.compile(r"\b\d+\.\d+[KMBkmb]\b"),  # decimal shorthand: 2.41B, 14.31M
 ]
 
-# A line is SOURCED if within 2 lines above it there is a // src: comment
-SRC_COMMENT = re.compile(r"//\s*src:\s*\S")
+# A line is SOURCED if within 2 lines above it there is a // src: <real-url> comment.
+# '// src: TODO' is NOT a valid source — it is itself a violation.
+SRC_COMMENT = re.compile(r"//\s*src:\s*(?!TODO\b)\S")
 
 # A line is SOURCED if the suspicious value lives inside a function-call argument
 # (i.e., not a string literal). Heuristic: the value appears after ( or , without quotes.
@@ -124,17 +128,6 @@ def scan_file(path: pathlib.Path) -> list[tuple[int, str, str]]:
     return violations
 
 
-def fix_file(path: pathlib.Path, violations: list[tuple[int, str, str]]) -> None:
-    lines = path.read_text(encoding="utf-8").splitlines()
-    # Insert from bottom up so line numbers stay valid
-    offset_lines = sorted(violations, key=lambda v: v[0], reverse=True)
-    for lineno, _val, _ctx in offset_lines:
-        idx = lineno - 1  # 0-indexed
-        indent = len(lines[idx]) - len(lines[idx].lstrip())
-        lines.insert(idx, " " * indent + "// src: TODO")
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
-
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--fix", action="store_true")
@@ -155,21 +148,13 @@ def main():
             print(f"  {rel}:{lineno} | {val} | {ctx}")
 
         if args.fix:
-            # Group by file, apply fixes
-            from collections import defaultdict
-
-            by_file: dict = defaultdict(list)
-            for rel, lineno, val, ctx in all_violations:
-                by_file[root / rel].append((lineno, val, ctx))
-            for fpath, viols in by_file.items():
-                fix_file(fpath, viols)
             print(
-                f"\n--fix applied: added '// src: TODO' above {len(all_violations)} violation(s)."
+                f"\n--fix (report-only): {len(all_violations)} line(s) need a real source URL."
             )
-            print("Replace each TODO with a real URL or RPC call before committing.")
-            sys.exit(0)
-        else:
-            sys.exit(1)
+            print(
+                "Add '// src: <url>' above each flagged line. Do NOT use '// src: TODO'."
+            )
+        sys.exit(1)
     else:
         print("OK — no unsourced numbers found.")
         sys.exit(0)
