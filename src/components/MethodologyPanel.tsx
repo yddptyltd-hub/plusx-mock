@@ -314,7 +314,7 @@ export function MethodologyPanel() {
             <tr className="border-b border-border/50">
               <td className="py-2 pr-4 text-text-secondary">Total LPX routed volume</td>
               <td className="py-2 pr-4 text-text-secondary">$38.1M · snapshot 20 Mar 2026</td>
-              <td className="py-2 pr-4 text-text-tertiary">V1 + V2 sum</td>
+              <td className="py-2 pr-4 text-text-tertiary">V1 + V2 sum (counts every hop in multi-hop swaps)</td>
               <td className="py-2 text-text-secondary">Point-in-time</td>
             </tr>
             <tr className="border-b border-border/50">
@@ -337,6 +337,18 @@ export function MethodologyPanel() {
             </tr>
           </tbody>
         </table>
+        <div className="mt-4 pt-3 border-t border-border/50">
+          <p className="text-[11px] text-text-tertiary leading-relaxed">
+            <span className="font-semibold text-text-secondary">How the $38.1M is denominated.</span>{" "}
+            Each swap&apos;s USD value is the DAI-anchored price{" "}
+            <span className="italic">at the time of the trade</span>, summed across all V1 and V2
+            router swap events. Multi-hop swaps contribute each constituent hop to the total — a
+            $100 swap routed through two pools adds $200 to LPX-routed volume. The figure is not
+            re-priced at a later snapshot date, so it remains stable against PLS price movements
+            since the trade. On-chain proof: block 25412763, tx{" "}
+            <code className="text-[10px] break-all">0x229f26314a43a295d8d681d50f7b2c094d198eab2284dd259bbaf9a3b8fc8135</code>.
+          </p>
+        </div>
       </div>
 
       {/* Section 6 — Not tracked */}
