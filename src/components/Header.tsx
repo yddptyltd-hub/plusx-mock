@@ -39,7 +39,7 @@ export function Header() {
   const activeTab = getActiveTab();
 
   return (
-    <nav className="h-16 bg-white border-b border-border px-4 sm:px-8 lg:px-12 flex items-center justify-between sticky top-0 z-50">
+    <nav className="h-16 bg-white/80 backdrop-blur-md border-b border-border px-4 sm:px-8 lg:px-12 flex items-center justify-between sticky top-0 z-50">
       <div className="flex items-center gap-8 lg:gap-12">
         <Link href="/" className="text-[22px] font-bold text-text-logo shrink-0">
           PlusX

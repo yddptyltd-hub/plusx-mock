@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 export default function PromotePage() {
   return (
     <div className="bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 min-h-screen">
-      <div className="max-w-4xl mx-auto px-4 sm:px-8 lg:px-12 py-6 lg:py-10">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-8 lg:px-12 py-6 lg:py-10">
         <div className="mb-6">
-          <h1 className="text-2xl font-bold text-text-primary mb-1">Promote LPX</h1>
+          <h1 className="text-3xl font-extrabold tracking-tight text-text-primary mb-2">Promote LPX</h1>
           <p className="text-sm text-text-secondary max-w-3xl">
             Cofounder data hub. Live PulseChain LPX stats you can quote anywhere, pre-formatted
             tweet / DM / Telegram copy-packs with real numbers, X mention tracker, and direct share-pack URLs.
