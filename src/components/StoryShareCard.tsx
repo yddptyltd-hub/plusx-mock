@@ -31,7 +31,7 @@ export function StoryShareCard() {
         </a>
         <a
           href={MP4_PATH}
-          download="plusx-lpx-story.mp4"
+          download="plusx-lpx-story-v2.mp4"
           className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold rounded-md border border-violet-500/40 bg-violet-500/10 text-violet-700 hover:bg-violet-500/20"
         >
           <Download className="w-3.5 h-3.5" /> Download MP4
