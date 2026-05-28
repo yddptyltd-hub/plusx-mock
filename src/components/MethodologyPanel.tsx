@@ -32,13 +32,16 @@ export function MethodologyPanel() {
             </tr>
             <tr className="border-b border-border/50">
               <td className="py-2 pr-4 text-text-secondary">Total TVL (USD)</td>
-              <td className="py-2 pr-4 text-text-secondary">live</td>
+              <td className="py-2 pr-4 text-text-secondary">live · fallback to on-chain snapshot</td>
               <td className="py-2 pr-4">
                 <code className="text-[10px] break-all text-text-tertiary">
                   same endpoint → total_tvl_usd
                 </code>
+                <p className="text-[10px] text-text-tertiary mt-1">
+                  When the live worker is degraded (DexScreener blocked from CF Worker IPs), plusx-mock falls back to the on-chain snapshot in <code>onChainTvlSnapshot.json</code>, last verified against LPX_MAIN reserves at block 26640264 ($951,613 across 43 pools · agy 2026-05-28).
+                </p>
               </td>
-              <td className="py-2 text-text-secondary">30 min</td>
+              <td className="py-2 text-text-secondary">30 min (live) · manual (snapshot)</td>
             </tr>
             <tr className="border-b border-border/50">
               <td className="py-2 pr-4 text-text-secondary">Token price (any routable token)</td>
