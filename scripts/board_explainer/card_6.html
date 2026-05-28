@@ -1,0 +1,40 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+* { box-sizing:border-box; margin:0; padding:0 }
+html, body { width:1080px; height:1920px; background:#ffffff; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif; color:#1a1a1a; overflow:hidden }
+.card { width:1080px; height:1920px; padding:80px; display:flex; flex-direction:column; justify-content:space-between }
+.label { font-size:24px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#4a5568; margin-bottom:24px }
+h1 { font-size:72px; font-weight:700; line-height:1.15; margin-bottom:32px }
+h2 { font-size:52px; font-weight:700; line-height:1.2; margin-bottom:28px }
+p { font-size:36px; line-height:1.6; margin-bottom:20px; color:#1a1a1a }
+.small { font-size:30px; color:#4a5568; line-height:1.5 }
+.footer { font-size:26px; color:#4a5568; font-weight:600; border-top:2px solid #e5e7eb; padding-top:32px }
+.accent { color:#0f766e }
+.bullet { font-size:32px; line-height:1.7; color:#1a1a1a }
+.bullet-item { margin-bottom:12px }
+
+.stages { display:flex; align-items:center; gap:16px; margin:40px 0 }
+.stage { flex:1; border:2px solid #1a1a1a; border-radius:6px; padding:24px 16px; text-align:center }
+.stage-impl { background:#0f766e; border-color:#0f766e; color:#fff }
+.stage-name { font-size:32px; font-weight:700 }
+.stage-sub { font-size:22px; color:#4a5568; margin-top:8px }
+.stage-impl .stage-sub { color:rgba(255,255,255,0.8) }
+.arrow { font-size:40px; color:#1a1a1a; flex:0 0 32px; text-align:center }
+.closing { font-size:46px; font-weight:700; line-height:1.3; margin:32px 0 }
+.link-line { font-size:34px; color:#0f766e; margin-top:24px; word-break:break-all }
+</style></head>
+<body><div class="card">
+  <div>
+    <div class="label">What we leave with</div>
+    <div class="stages">
+      <div class="stage"><div class="stage-name">Designed</div><div class="stage-sub">the doc exists</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="stage" style="background:#f0fdf4;border-color:#0f766e"><div class="stage-name">Tested</div><div class="stage-sub">2+ real tests</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="stage stage-impl"><div class="stage-name">Implemented</div><div class="stage-sub">runs without us</div></div>
+    </div>
+    <div class="closing">End of summer, OwnX live. LPX runs underneath.</div>
+    <div class="link-line">&#8594; plusx-mock.pages.dev/board-explainer/</div>
+    <p class="small" style="margin-top:16px">Full brief + audio narration on the page &middot; tap the green button bottom-right</p>
+  </div>
+  <div class="footer">Q3 plan &middot; 12 weeks &middot; plusx</div>
+</div></body></html>

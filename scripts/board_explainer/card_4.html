@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+* { box-sizing:border-box; margin:0; padding:0 }
+html, body { width:1080px; height:1920px; background:#ffffff; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif; color:#1a1a1a; overflow:hidden }
+.card { width:1080px; height:1920px; padding:80px; display:flex; flex-direction:column; justify-content:space-between }
+.label { font-size:24px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#4a5568; margin-bottom:24px }
+h1 { font-size:72px; font-weight:700; line-height:1.15; margin-bottom:32px }
+h2 { font-size:52px; font-weight:700; line-height:1.2; margin-bottom:28px }
+p { font-size:36px; line-height:1.6; margin-bottom:20px; color:#1a1a1a }
+.small { font-size:30px; color:#4a5568; line-height:1.5 }
+.footer { font-size:26px; color:#4a5568; font-weight:600; border-top:2px solid #e5e7eb; padding-top:32px }
+.accent { color:#0f766e }
+.bullet { font-size:32px; line-height:1.7; color:#1a1a1a }
+.bullet-item { margin-bottom:12px }
+
+.timeline { display:flex; margin:40px 0; height:80px }
+.seg { display:flex; align-items:center; justify-content:center; text-align:center; font-size:22px; font-weight:600; color:#1a1a1a; border:1px solid #1a1a1a; line-height:1.2 }
+.seg-accent { background:#0f766e; color:#fff; border-color:#0f766e }
+.seg-lt { background:#f7f8fa }
+.seg-md { background:#e5e7eb }
+.steps { margin-top:24px }
+.step-row { display:flex; gap:16px; margin-bottom:24px; font-size:30px; line-height:1.4; border-left:4px solid #e5e7eb; padding-left:20px }
+.step-row.highlight { border-color:#0f766e }
+.step-num { font-weight:700; min-width:30px; color:#0f766e }
+</style></head>
+<body><div class="card">
+  <div>
+    <div class="label">The Friday meeting</div>
+    <div class="timeline">
+      <div class="seg seg-lt" style="flex:5">Open<br>5</div>
+      <div class="seg seg-md" style="flex:10">Propose<br>10</div>
+      <div class="seg seg-accent" style="flex:15">Disagree<br>15</div>
+      <div class="seg seg-md" style="flex:10">Decide<br>10</div>
+      <div class="seg seg-lt" style="flex:5">Own<br>5</div>
+      <div class="seg seg-lt" style="flex:5">Close<br>5</div>
+    </div>
+    <p style="font-size:38px; font-weight:600; margin-bottom:32px">2 hours &middot; 6 steps &middot; repeated per goal</p>
+    <div class="steps">
+      <div class="step-row"><span class="step-num">1</span><span>Open: where we are, where we want to be (5 min)</span></div>
+      <div class="step-row"><span class="step-num">2</span><span>Propose: each cofounder pitches their path (10 min)</span></div>
+      <div class="step-row highlight"><span class="step-num">3</span><span>Disagree: which path produces the most output? (15 min)</span></div>
+      <div class="step-row"><span class="step-num">4</span><span>Decide: vote, commit, write must-happens (10 min)</span></div>
+      <div class="step-row"><span class="step-num">5</span><span>Own: assign one owner per task (5 min)</span></div>
+      <div class="step-row"><span class="step-num">6</span><span>Close: confirm plan + owners (5 min)</span></div>
+    </div>
+  </div>
+  <div class="footer">Q3 plan &middot; 12 weeks &middot; plusx</div>
+</div></body></html>

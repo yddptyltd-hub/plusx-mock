@@ -1,0 +1,46 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><style>
+* { box-sizing:border-box; margin:0; padding:0 }
+html, body { width:1080px; height:1920px; background:#ffffff; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif; color:#1a1a1a; overflow:hidden }
+.card { width:1080px; height:1920px; padding:80px; display:flex; flex-direction:column; justify-content:space-between }
+.label { font-size:24px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:#4a5568; margin-bottom:24px }
+h1 { font-size:72px; font-weight:700; line-height:1.15; margin-bottom:32px }
+h2 { font-size:52px; font-weight:700; line-height:1.2; margin-bottom:28px }
+p { font-size:36px; line-height:1.6; margin-bottom:20px; color:#1a1a1a }
+.small { font-size:30px; color:#4a5568; line-height:1.5 }
+.footer { font-size:26px; color:#4a5568; font-weight:600; border-top:2px solid #e5e7eb; padding-top:32px }
+.accent { color:#0f766e }
+.bullet { font-size:32px; line-height:1.7; color:#1a1a1a }
+.bullet-item { margin-bottom:12px }
+
+.half { flex:1; padding:40px 0; border-bottom:2px solid #e5e7eb }
+.halves { display:flex; flex-direction:column; flex:1; margin:20px 0 }
+.ab { display:flex; gap:0; margin:24px 0 }
+.ab-a { flex:1; background:#e5e7eb; border-radius:4px 0 0 4px; height:60px; display:flex; align-items:center; justify-content:center; font-size:36px; font-weight:700; color:#4a5568 }
+.ab-b { flex:1; background:#0f766e; border-radius:0 4px 4px 0; height:60px; display:flex; align-items:center; justify-content:center; font-size:36px; font-weight:700; color:#fff }
+.mini-grid { display:flex; flex-wrap:wrap; gap:6px; margin:24px 0; width:fit-content }
+.cell { width:60px; height:52px; border:1px solid #e5e7eb; border-radius:3px; display:flex; flex-direction:column; align-items:center; justify-content:center }
+.cell:nth-child(odd) { background:#f7f8fa }
+.cell-t { font-size:11px; color:#4a5568 }
+.cell-p { font-size:11px; color:#4a5568; border-top:1px solid #e5e7eb; width:100%; text-align:center }
+h3 { font-size:42px; font-weight:700; margin-bottom:16px }
+</style></head>
+<body><div class="card">
+  <div>
+    <div class="label">Goals 2 &amp; 3</div>
+  </div>
+  <div class="halves">
+    <div class="half">
+      <h3>Goal 2: TVL A/B</h3>
+      <div class="ab"><div class="ab-a">A</div><div class="ab-b">B</div></div>
+      <p class="small">One TVL experiment per week.<br>Hypothesis. A vs B. Decision rule. Owner.</p>
+    </div>
+    <div class="half" style="border-bottom:none; padding-top:40px">
+      <h3>Goal 3: X messaging</h3>
+      <div class="mini-grid">
+        <div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div><div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div><div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div><div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div><div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div><div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div><div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div><div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div><div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div><div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div><div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div><div class="cell"><div class="cell-t">Th</div><div class="cell-p">Pr</div></div>
+      </div>
+      <p class="small">One theme + one proof per week.<br>Tied to that week&#8217;s TVL experiment.</p>
+    </div>
+  </div>
+  <div class="footer">Q3 plan &middot; 12 weeks &middot; plusx</div>
+</div></body></html>
