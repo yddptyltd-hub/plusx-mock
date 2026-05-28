@@ -86,7 +86,7 @@ export function LivePulse() {
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
           <Activity className="w-4 h-4 text-brand-teal" />
-          <h2 className="text-sm font-semibold text-text-primary">What's happening on PulseChain right now</h2>
+          <h2 className="text-[15px] font-bold tracking-tight text-text-primary">What's happening on PulseChain right now</h2>
         </div>
         <span className="text-[10px] uppercase font-semibold text-text-tertiary tabular-nums">live · auto-refresh 60s</span>
       </div>
@@ -168,20 +168,20 @@ function PulseRow({
   const toneCls = tone === "up" ? "text-emerald-700" : tone === "down" ? "text-red-700" : "text-text-primary";
   return (
     <div
-      className="rounded-xl border border-border bg-white/70 p-3"
+      className="rounded-xl border border-border/80 bg-white/50 backdrop-blur-sm p-4 hover:border-brand-teal/40 hover:bg-white/80 transition-all duration-300 shadow-sm"
       style={{ viewTransitionName: `pulse-tile-${vtSlug}` }}
     >
-      <div className="flex items-center gap-1.5 text-[10px] uppercase font-semibold text-text-tertiary mb-1">
+      <div className="flex items-center gap-1.5 text-[10px] uppercase tracking-wider font-bold text-text-tertiary mb-1.5">
         {icon}
         {label}
       </div>
       <div
-        className={`text-sm font-bold ${toneCls}`}
+        className={`text-base font-extrabold ${toneCls}`}
         style={{ viewTransitionName: `pulse-value-${vtSlug}` }}
       >
         {value}
       </div>
-      <div className="text-[11px] text-text-secondary tabular-nums">{sub}</div>
+      <div className="text-[12px] text-text-secondary mt-0.5 tabular-nums">{sub}</div>
     </div>
   );
 }
