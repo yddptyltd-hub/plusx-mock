@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlusX LPX Terminal</title>
+<style>
+  :root { --bg: #fdfdfd; --text: #111; --border: #e0e0e0; --green: #16a34a; --amber: #d97706; }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; }
+  .num { font-family: "Georgia", serif; }
+  .ticker { background: #111; color: #fff; padding: 8px 0; overflow: hidden; white-space: nowrap; font-size: 13px; text-transform: uppercase; display: flex; }
+  .ticker-item { display: inline-block; margin-right: 48px; }
+  .ticker-val { color: #4ade80; margin-left: 8px; font-weight: bold; font-family: "Georgia", serif; }
+  .brand-row { padding: 24px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .nav-row { padding: 12px 24px; border-bottom: 1px solid var(--border); background: #f9f9f9; display: flex; gap: 24px; font-size: 13px; font-weight: bold; text-transform: uppercase; }
+  .nav-row a { text-decoration: none; color: #555; } .nav-row a.active { color: #111; }
+  main { padding: 32px 24px; max-width: 1440px; margin: 0 auto; }
+  .hero-chart-area { border: 1px solid var(--border); padding: 24px; margin-bottom: 32px; background: #fff; }
+  .chart-header { display: flex; justify-content: space-between; margin-bottom: 24px; }
+  .chart-title { font-size: 18px; font-weight: bold; }
+  .chart-value { font-size: 32px; color: var(--green); }
+  .svg-chart { width: 100%; height: 200px; background: #fafafa; border: 1px solid #eee; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .kpi-cell { border: 1px solid var(--border); padding: 16px; background: #fff; }
+  .kpi-cell .lbl { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+  .kpi-cell .val { font-size: 24px; margin-top: 8px; }
+  .health-green { color: var(--green); } .health-amber { color: var(--amber); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 64px; }
+  th { text-align: left; padding: 12px; border-bottom: 2px solid #111; text-transform: uppercase; font-size: 11px; }
+  td { padding: 16px 12px; border-bottom: 1px solid var(--border); }
+  .footer-cta { background: #111; color: #fff; text-align: center; padding: 64px 24px; }
+  .footer-cta button { background: #fff; color: #111; border: none; padding: 16px 32px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 24px; text-transform: uppercase; }
+</style>
+</head>
+<body>
+  <div class="ticker">
+    <div style="animation: scroll 20s linear infinite; display:flex;">
+      <div class='ticker-item'>Total TVL (USD) <span class='ticker-val'>$951,356</span></div><div class='ticker-item'>Active LPX pools <span class='ticker-val'>35</span></div><div class='ticker-item'>Liquidity providers <span class='ticker-val'>920</span></div><div class='ticker-item'>Avg 30-day APR <span class='ticker-val'>7.04%</span></div><div class='ticker-item'>Cumulative swaps <span class='ticker-val'>~198,000</span></div><div class='ticker-item'>Total LPX-routed volume <span class='ticker-val'>$38.1M</span></div><div class='ticker-item'>PLSX burn contribution <span class='ticker-val'>$19,060</span></div>
+    </div>
+  </div>
+  <div class="brand-row">
+    <div style="font-size:24px; font-weight:bold;">PlusX LPX</div>
+    <div style="font-size:12px; max-width:300px; text-align:right; color:#666;">Liquidity protocol on PulseChain — managed bid/ask, NTZ-shaped LP. Every number verified on-chain.</div>
+  </div>
+  <div class="nav-row">
+    <a href="#" class="active">LPX Dashboard</a>
+    <a href="#">uDEX</a>
+    <a href="#">ValidatorX</a>
+    <a href="#">Portfolio</a>
+    <a href="/methodology/">Methodology ↗</a>
+  </div>
+
+  <main>
+    <div class="hero-chart-area">
+      <div class="chart-header">
+        <div>
+          <div class="chart-title">Total Value Locked (30D Trend)</div>
+          <div style="font-size:12px; color:#666;">Data fetched from on-chain reserves</div>
+        </div>
+        <div class="chart-value num">$951,356</div>
+      </div>
+      <svg class="svg-chart" viewBox="0 0 1000 200" preserveAspectRatio="none">
+        <path d="M0,180 L100,160 L200,170 L300,140 L400,150 L500,110 L600,120 L700,80 L800,90 L900,40 L1000,20 L1000,200 L0,200 Z" fill="#ecfdf5" opacity="0.5"/>
+        <path d="M0,180 L100,160 L200,170 L300,140 L400,150 L500,110 L600,120 L700,80 L800,90 L900,40 L1000,20" fill="none" stroke="var(--green)" stroke-width="3"/>
+      </svg>
+    </div>
+
+    <div class="kpi-grid">
+      <div class='kpi-cell'><div class='lbl'>Active LPX pools</div><div class='val num health-green'>35</div></div><div class='kpi-cell'><div class='lbl'>Liquidity providers</div><div class='val num health-green'>920</div></div><div class='kpi-cell'><div class='lbl'>Avg 30-day APR</div><div class='val num health-green'>7.04%</div></div><div class='kpi-cell'><div class='lbl'>Cumulative swaps</div><div class='val num health-green'>~198,000</div></div><div class='kpi-cell'><div class='lbl'>Total LPX-routed volume</div><div class='val num health-green'>$38.1M</div></div><div class='kpi-cell'><div class='lbl'>PLSX burn contribution</div><div class='val num health-green'>$19,060</div></div>
+    </div>
+
+    <table>
+      <thead><tr><th>Pair</th><th>TVL</th><th>APR</th><th>24h Vol</th></tr></thead>
+      <tbody>
+        <tr><td><strong>WPLS / DAI(ETH)</strong></td><td class='num'>$815.4k</td><td class='num health-green'>6.6%</td><td class='num'>$141</td></tr><tr><td><strong>uPLS / DAI(ETH)</strong></td><td class='num'>$2.6k</td><td class='num health-green'>9.5%</td><td class='num'>$921</td></tr><tr><td><strong>PLSX / DAI(ETH)</strong></td><td class='num'>$81.3k</td><td class='num health-green'>7.6%</td><td class='num'>$1,635</td></tr><tr><td><strong>HEX / DAI(ETH)</strong></td><td class='num'>$46.1k</td><td class='num health-green'>9.8%</td><td class='num'>$15.2k</td></tr><tr><td><strong>INC / DAI(ETH)</strong></td><td class='num'>$25.2k</td><td class='num health-green'>8.7%</td><td class='num'>$1,103</td></tr>
+      </tbody>
+    </table>
+  </main>
+
+  <div class="footer-cta">
+    <div style="font-size:24px; font-weight:bold; margin-bottom:16px;">Ready to deploy capital?</div>
+    <div style="color:#aaa;">Join 920 liquidity providers today.</div>
+    <button>Connect Wallet</button>
+  </div>
+</body>
+</html>

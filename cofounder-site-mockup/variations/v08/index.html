@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlusX LPX</title>
+<style>
+  :root { --bg: #ffffff; --surface: #f8fafc; --text: #0f172a; --border: #cbd5e1; --blue: #1e3a8a; --red: #dc2626; }
+  body { font-family: -apple-system, sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; height: 100vh; }
+  h1, h2, h3 { font-family: "Georgia", serif; font-weight: normal; }
+  aside { width: 260px; background: var(--surface); border-right: 1px solid var(--border); padding: 32px 0; display: flex; flex-direction: column; }
+  .logo { padding: 0 32px 32px; font-size: 24px; font-weight: bold; font-family: "Georgia", serif; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .nav-item { padding: 12px 32px; color: #475569; text-decoration: none; font-size: 14px; font-weight: 500; display: block; }
+  .nav-item:hover { background: #e2e8f0; }
+  .nav-item.active { color: var(--blue); border-left: 4px solid var(--blue); background: #eff6ff; padding-left: 28px; }
+  main { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+  header { padding: 24px 48px; display: flex; justify-content: flex-end; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: var(--bg); }
+  .btn { background: var(--blue); color: white; border: none; padding: 10px 24px; font-size: 14px; border-radius: 4px; cursor: pointer; font-family: sans-serif; }
+  .content { padding: 48px; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+  .hero-center { text-align: center; margin-bottom: 64px; }
+  .hc-lbl { font-size: 16px; color: #64748b; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 16px; }
+  .hc-val { font-size: 80px; font-family: "Georgia", serif; margin: 0; color: var(--blue); line-height: 1; }
+  .hc-link { font-size: 14px; color: var(--blue); text-decoration: underline; margin-top: 16px; display: inline-block; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 64px; }
+  .kpi-card { border: 1px solid var(--border); padding: 24px; border-top: 3px solid var(--blue); }
+  .kpi-card.warn { border-top-color: var(--red); }
+  .kc-lbl { font-size: 13px; color: #64748b; margin-bottom: 8px; }
+  .kc-val { font-size: 24px; font-weight: 600; font-family: "Georgia", serif; }
+  table { width: 100%; border-collapse: collapse; text-align: left; margin-bottom: 48px; }
+  th { font-family: "Georgia", serif; font-size: 14px; color: #64748b; border-bottom: 2px solid var(--border); padding: 16px 8px; font-weight: normal; }
+  td { padding: 16px 8px; border-bottom: 1px solid var(--border); font-size: 15px; }
+  .footer-note { font-size: 12px; color: #94a3b8; border-top: 1px solid var(--border); padding-top: 24px; line-height: 1.6; }
+  @media (max-width: 768px) { body { flex-direction: column; } aside { width: 100%; border-right: none; border-bottom: 1px solid var(--border); padding: 16px 0; } .logo { padding-bottom: 16px; margin-bottom: 8px; } .kpi-grid { grid-template-columns: 1fr 1fr; } .hc-val { font-size: 48px; } }
+</style>
+</head>
+<body>
+  <aside>
+    <div class="logo">PlusX</div>
+    <a href="#" class="nav-item active">LPX Protocol</a>
+    <a href="#" class="nav-item">uDEX</a>
+    <a href="#" class="nav-item">ValidatorX</a>
+    <a href="#" class="nav-item">Portfolio</a>
+    <a href="#" class="nav-item">Docs</a>
+  </aside>
+  <main>
+    <header><button class="btn">Connect Wallet</button></header>
+    <div class="content">
+      <div class="hero-center">
+        <div class="hc-lbl">Total Value Locked</div>
+        <h1 class="hc-val">$951,356</h1>
+        <a href="/methodology/" class="hc-link">View Methodology & On-Chain Proof ↗</a>
+        <p style="color:#64748b; margin-top:24px; max-width:600px; margin-left:auto; margin-right:auto;">Liquidity protocol on PulseChain — managed bid/ask, NTZ-shaped LP. Every number verified on-chain. Every dollar traceable to an on-chain transaction · <a href="/methodology/">methodology</a></p>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card"><div class="kc-lbl">30-Day Avg APR</div><div class="kc-val">7.04%</div></div>
+        <div class="kpi-card"><div class="kc-lbl">Total Volume</div><div class="kc-val">$38.1M</div></div>
+        <div class="kpi-card warn"><div class="kc-lbl">PLSX Burn (Notice)</div><div class="kc-val" style="color:var(--red);">$19,060</div></div>
+        <div class="kpi-card"><div class="kc-lbl">Active Pools</div><div class="kc-val">35</div></div>
+      </div>
+
+      <h2>Liquidity Pools</h2>
+      <table>
+        <thead><tr><th>Pair</th><th>TVL</th><th>APR</th><th>24h Volume</th></tr></thead>
+        <tbody>
+          <tr><td><strong>WPLS / DAI(ETH)</strong></td><td>$815.4k</td><td style='color:var(--blue);'>6.6%</td><td>$141</td></tr><tr><td><strong>uPLS / DAI(ETH)</strong></td><td>$2.6k</td><td style='color:var(--blue);'>9.5%</td><td>$921</td></tr><tr><td><strong>PLSX / DAI(ETH)</strong></td><td>$81.3k</td><td style='color:var(--blue);'>7.6%</td><td>$1,635</td></tr><tr><td><strong>HEX / DAI(ETH)</strong></td><td>$46.1k</td><td style='color:var(--blue);'>9.8%</td><td>$15.2k</td></tr><tr><td><strong>INC / DAI(ETH)</strong></td><td>$25.2k</td><td style='color:var(--blue);'>8.7%</td><td>$1,103</td></tr>
+        </tbody>
+      </table>
+
+      <div class="footer-note">Methodology page lives at /methodology/ — every number traces to either DexScreener live API or LPX_MAIN reserves at block 26640264 (tx 0x229f26314a43a295d8d681d50f7b2c094d198eab2284dd259bbaf9a3b8fc8135). Snapshot date 2026-03-20.</div>
+    </div>
+  </main>
+</body>
+</html>

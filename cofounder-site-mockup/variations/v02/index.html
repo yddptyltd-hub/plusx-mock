@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PlusX LPX</title>
+<style>
+  :root { --bg: #f0f2f5; --bg-card: #ffffff; --text: #2d3748; --text-muted: #718096; --border: #cbd5e0; --accent: #0f766e; --accent-red: #e53e3e; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); margin: 0; display: flex; height: 100vh; overflow: hidden; }
+  h1, h2, h3, .serif { font-family: "Georgia", "Times New Roman", serif; }
+  .sidebar { width: 240px; background: var(--bg-card); border-right: 1px solid var(--border); display: flex; flex-direction: column; padding: 24px 0; }
+  .brand { padding: 0 24px 24px; font-size: 20px; font-weight: bold; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+  .nav-item { padding: 12px 24px; color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .nav-item.active { color: var(--accent); background: #e6fffa; border-right: 3px solid var(--accent); }
+  .main-content { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+  .topbar { height: 64px; background: var(--bg-card); border-bottom: 1px solid var(--border); display: flex; justify-content: flex-end; align-items: center; padding: 0 32px; position: sticky; top: 0; z-index: 10; }
+  .btn-primary { background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 4px; font-size: 14px; cursor: pointer; }
+  .btn-outline { background: transparent; color: var(--accent); border: 1px solid var(--accent); padding: 4px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+  .content-wrapper { padding: 32px; max-width: 1400px; margin: 0 auto; width: 100%; box-sizing: border-box; }
+  .split-hero { display: flex; gap: 32px; margin-bottom: 48px; align-items: flex-start; }
+  .hero-pitch { flex: 1; }
+  .hero-pitch h1 { font-size: 32px; margin: 0 0 16px 0; color: #1a202c; }
+  .hero-pitch p { font-size: 16px; color: var(--text-muted); line-height: 1.6; }
+  .hero-kpis { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .kpi-mini { background: var(--bg-card); border: 1px solid var(--border); padding: 16px; border-radius: 4px; }
+  .kpi-mini-label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px; }
+  .kpi-mini-value { font-size: 20px; font-weight: 600; font-family: monospace; }
+  .kpi-warning { color: var(--accent-red); font-size: 11px; margin-top: 4px; display: block; }
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; margin-bottom: 48px; }
+  .pool-card { background: var(--bg-card); border: 1px solid var(--border); padding: 20px; border-radius: 4px; display: flex; flex-direction: column; }
+  .pool-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 12px; }
+  .pool-name { font-weight: 600; font-size: 15px; }
+  .pool-stats { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
+  .stat-row { display: flex; justify-content: space-between; font-size: 13px; }
+  .stat-row span:first-child { color: var(--text-muted); }
+  .stat-row span:last-child { font-weight: 600; font-family: monospace; }
+  .footer-ribbon { background: #2d3748; color: #a0aec0; padding: 16px 32px; font-size: 11px; display: flex; flex-direction: column; gap: 8px; }
+  .footer-ribbon a { color: #e2e8f0; }
+  @media (max-width: 768px) { body { flex-direction: column; overflow: auto; } .sidebar { width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border); padding: 16px 0; } .nav-item { display: inline-block; padding: 8px 16px; } .split-hero { flex-direction: column; } .topbar { display: none; } }
+</style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="brand">PlusX Dashboard</div>
+    <a href="#" class="nav-item active">LPX Protocol</a>
+    <a href="#" class="nav-item">uDEX</a>
+    <a href="#" class="nav-item">ValidatorX</a>
+    <a href="#" class="nav-item">Portfolio</a>
+    <a href="#" class="nav-item">Documentation</a>
+  </div>
+  <div class="main-content">
+    <div class="topbar"><button class="btn-primary">Connect Wallet</button></div>
+    <div class="content-wrapper">
+      <div class="split-hero">
+        <div class="hero-pitch">
+          <h1>PlusX LPX</h1>
+          <p>Liquidity protocol on PulseChain — managed bid/ask, NTZ-shaped LP. Every number verified on-chain.</p>
+          <div style="margin-top:16px; font-size:13px; color:var(--text-muted);">Every dollar traceable to an on-chain transaction · <a href="/methodology/">methodology</a></div>
+        </div>
+        <div class="hero-kpis">
+          <div class='kpi-mini'><div class='kpi-mini-label'>Total TVL (USD)</div><div class='kpi-mini-value'>$951,356</div></div><div class='kpi-mini'><div class='kpi-mini-label'>Active LPX pools</div><div class='kpi-mini-value'>35</div></div><div class='kpi-mini'><div class='kpi-mini-label'>Liquidity providers</div><div class='kpi-mini-value'>920</div></div><div class='kpi-mini'><div class='kpi-mini-label'>Avg 30-day APR</div><div class='kpi-mini-value'>7.04%</div></div><div class='kpi-mini'><div class='kpi-mini-label'>Cumulative swaps</div><div class='kpi-mini-value'>~198,000</div></div><div class='kpi-mini'><div class='kpi-mini-label'>Total LPX-routed volume</div><div class='kpi-mini-value'>$38.1M</div></div><div class='kpi-mini'><div class='kpi-mini-label'>PLSX burn contribution</div><div class='kpi-mini-value'>$19,060</div></div>
+          <div class='kpi-mini'><div class='kpi-mini-label'>Status</div><div class='kpi-mini-value' style='color:var(--accent);'>Operational</div></div>
+        </div>
+      </div>
+
+      <h2 class="serif" style="font-size:20px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 24px;">Active Pools</h2>
+      <div class="cards-grid">
+
+        <div class="pool-card">
+          <div class="pool-header"><div class="pool-name">WPLS / DAI(ETH)</div><button class="btn-outline">Deposit</button></div>
+          <div class="pool-stats">
+            <div class="stat-row"><span>TVL</span><span>$815.4k</span></div>
+            <div class="stat-row"><span>APR</span><span style="color:var(--accent);">6.6%</span></div>
+            <div class="stat-row"><span>Vol 24h</span><span>$141</span></div>
+          </div>
+        </div>
+
+        <div class="pool-card">
+          <div class="pool-header"><div class="pool-name">uPLS / DAI(ETH)</div><button class="btn-outline">Deposit</button></div>
+          <div class="pool-stats">
+            <div class="stat-row"><span>TVL</span><span>$2.6k</span></div>
+            <div class="stat-row"><span>APR</span><span style="color:var(--accent);">9.5%</span></div>
+            <div class="stat-row"><span>Vol 24h</span><span>$921</span></div>
+          </div>
+        </div>
+
+        <div class="pool-card">
+          <div class="pool-header"><div class="pool-name">PLSX / DAI(ETH)</div><button class="btn-outline">Deposit</button></div>
+          <div class="pool-stats">
+            <div class="stat-row"><span>TVL</span><span>$81.3k</span></div>
+            <div class="stat-row"><span>APR</span><span style="color:var(--accent);">7.6%</span></div>
+            <div class="stat-row"><span>Vol 24h</span><span>$1,635</span></div>
+          </div>
+        </div>
+
+        <div class="pool-card">
+          <div class="pool-header"><div class="pool-name">HEX / DAI(ETH)</div><button class="btn-outline">Deposit</button></div>
+          <div class="pool-stats">
+            <div class="stat-row"><span>TVL</span><span>$46.1k</span></div>
+            <div class="stat-row"><span>APR</span><span style="color:var(--accent);">9.8%</span></div>
+            <div class="stat-row"><span>Vol 24h</span><span>$15.2k</span></div>
+          </div>
+        </div>
+
+        <div class="pool-card">
+          <div class="pool-header"><div class="pool-name">INC / DAI(ETH)</div><button class="btn-outline">Deposit</button></div>
+          <div class="pool-stats">
+            <div class="stat-row"><span>TVL</span><span>$25.2k</span></div>
+            <div class="stat-row"><span>APR</span><span style="color:var(--accent);">8.7%</span></div>
+            <div class="stat-row"><span>Vol 24h</span><span>$1,103</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="footer-ribbon">
+      <div>Methodology page lives at /methodology/ — every number traces to either DexScreener live API or LPX_MAIN reserves at block 26640264 (tx 0x229f26314a43a295d8d681d50f7b2c094d198eab2284dd259bbaf9a3b8fc8135). Snapshot date 2026-03-20.</div>
+      <div>Contract Addresses: LPX_MAIN 0x123...456 | ROUTER 0x789...012</div>
+    </div>
+  </div>
+</body>
+</html>
