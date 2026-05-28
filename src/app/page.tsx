@@ -8,6 +8,7 @@ import { copyData } from "@/lib/data";
 import { getFavorites } from "@/lib/useFavorites";
 import { useLivePools } from "@/lib/useLivePools";
 import { LivePool, formatUsd } from "@/lib/livePools";
+import { usePriceGraph } from "@/lib/usePriceGraph";
 
 type SortConfig = {
   key: "tvlRaw" | "volume24hRaw" | "ageDays" | "apr30dRaw" | null;
@@ -26,6 +27,7 @@ export default function Dashboard() {
   const [lastUpdatedDisplay, setLastUpdatedDisplay] = useState<string | null>(null);
 
   const { pools: livePools, isLive, error } = useLivePools();
+  const { data: priceGraph, isLive: workerLive } = usePriceGraph();
 
   useEffect(() => { setFavorites(getFavorites()); }, []);
 
@@ -69,15 +71,25 @@ export default function Dashboard() {
     const s = copyData.headerStats;
     const tvlTooltip = "Sum of TVL across all active LPX pools, computed from on-chain reserves × DexScreener token prices. DAI treated as $1.00 per ecosystem oracle.";
     if (!livePcts || !isLive) return [s.activePools, s.liquidityProviders, s.avgApr30d, { label: "Total TVL", value: "—", subtitle: "loading…", tooltip: tvlTooltip }];
-    const tvlValue = livePcts.totalTvlUsd !== null ? formatUsd(livePcts.totalTvlUsd) : "—";
-    const tvlSubtitle = `across ${livePcts.poolCount} pools`;
+
+    // Worker is authoritative for pool_count + total_tvl_usd.
+    // Fall back to per-pool aggregates only when worker is unavailable or returns 0.
+    const workerPoolCount = workerLive && priceGraph && priceGraph.pool_count > 0 ? priceGraph.pool_count : null;
+    const workerTvl = workerLive && priceGraph && priceGraph.total_tvl_usd > 0 ? priceGraph.total_tvl_usd : null;
+
+    const displayPoolCount = workerPoolCount ?? livePcts.count;
+    const displayTvl = workerTvl ?? livePcts.totalTvlUsd;
+    const tvlValue = displayTvl !== null ? formatUsd(displayTvl) : "—";
+    const tvlSubtitle = `across ${displayPoolCount} pools${workerLive ? " · live" : ""}`;
+    const poolSubtitle = `${workerLive ? "live · " : ""}across ${livePcts.fundTokenCount} fund tokens`;
+
     return [
-      { label: s.activePools.label, value: String(livePcts.count), subtitle: `across ${livePcts.fundTokenCount} fund tokens`, tooltip: s.activePools.tooltip },
+      { label: s.activePools.label, value: String(displayPoolCount), subtitle: poolSubtitle, tooltip: s.activePools.tooltip },
       { label: s.liquidityProviders.label, value: livePcts.lpCount.toLocaleString(), subtitle: `${livePcts.lpAllTime.toLocaleString()} all-time`, tooltip: s.liquidityProviders.tooltip },
       { label: s.avgApr30d.label, value: `${livePcts.avgApr30d.toFixed(2)}%`, subtitle: livePcts.maxLabel ? `Max ${livePcts.maxApr.toFixed(2)}% on ${livePcts.maxLabel}` : s.avgApr30d.subtitle, tooltip: s.avgApr30d.tooltip },
       { label: "Total TVL", value: tvlValue, subtitle: tvlSubtitle, tooltip: tvlTooltip },
     ];
-  }, [livePcts, isLive]);
+  }, [livePcts, isLive, priceGraph, workerLive]);
 
   const filteredPools = useMemo(() => {
     let pools = [...livePools];
